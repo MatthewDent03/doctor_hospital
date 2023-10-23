@@ -6,21 +6,21 @@
     <table class="table table-hover">
         <tbody>
             <tr>
-                <th><strong> first_name </strong></th>
+                <th><strong> First Name </strong></th>
                 <td>{{ $doctor->first_name }}</td>
-                <th><strong> last_name </strong></th>
+                <th><strong> Last Name </strong></th>
                 <td>{{ $doctor->last_name }}</td>
             </tr>
 
             <tr>
-                <th><strong> email </strong></th>
+                <th><strong> Email </strong></th>
                 <td>{{ $doctor->email }}</td>
             </tr>
-                <th><strong> phone_number </strong></th>
+                <th><strong> Phone Number </strong></th>
                 <td>{{ $doctor->phone_number }}</td>
             
             <tr>
-                <th><strong> facility </strong></th>
+                <th><strong> Facility </strong></th>
                 <td>{{ $doctor->facility }}</td>
             </tr>
         </tbody>
