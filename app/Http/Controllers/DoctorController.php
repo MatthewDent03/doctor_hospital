@@ -29,7 +29,19 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required'
+            'last_name' => 'required'
+        ]);
+
+        Doctor::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => "Test Email",
+            'phone_number' => "Test Phone Number",
+            'facility' => "Test Facility"
+        ]);
+        return to_route('doctors.index');
     }
 
     /**

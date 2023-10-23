@@ -9,11 +9,13 @@ class Doctor extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'facility',
-        'email',
-        'phone_number',
-    ];
+    protected $guarded = [];
+
+    // protected $fillable = [
+    //     'first_name',
+    //     'last_name',
+    //     'facility',
+    //     'email',
+    //     'phone_number',
+    // ];
 }
