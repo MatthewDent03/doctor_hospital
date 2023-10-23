@@ -15,3 +15,5 @@ use App\Http\Controllers\DoctorController;
 */
 
 Route::resource('/doctors',DoctorController::class);
+Route::resource('/doctors',DoctorController::class);
+Route::get('/doctors/{doctor}',[DoctorController::class,'show'])->name('doctors.show');
