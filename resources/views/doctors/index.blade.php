@@ -15,7 +15,7 @@
         <tbody>
             @foreach ($doctors as $doctor)
             <tr>
-                <td>{{ $doctor->first_name }}</td>
+                <td><a href="{{ route('doctors.show', $doctor) }}">{{ $doctor->first_name }}</a></td>
                 <td>{{ $doctor->email }}</td>
                 <td>{{ $doctor->phone_number }}</td>
                 <td>
