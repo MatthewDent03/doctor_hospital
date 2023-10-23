@@ -46,9 +46,8 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Doctor $doctor)
     {
-        $doctor = Doctor::find($id);
         return view('doctors.show')->with('doctor', $doctor);
     }
 

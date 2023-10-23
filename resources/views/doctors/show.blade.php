@@ -6,10 +6,6 @@
     <table class="table table-hover">
         <tbody>
             <tr>
-                <th><strong> Id </strong></th>
-                <td>{{ $doctor->id }}</td>
-            </tr>
-            <tr>
                 <th><strong> first_name </strong></th>
                 <td>{{ $doctor->first_name }}</td>
                 <th><strong> last_name </strong></th>
