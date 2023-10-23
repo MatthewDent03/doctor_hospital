@@ -21,7 +21,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -35,9 +35,10 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $doctor = Doctor::find($id);
+        return view('doctors.show')->with('doctor', $doctor);
     }
 
     /**

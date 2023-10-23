@@ -11,8 +11,9 @@
     <header>
         <nav>
             <ul>
-                <li><a href="{{ route('doctors.index') }}">Index</a></li>
-                <li><a href="{{ route('doctors.create') }}">Create</a></li>
+                <li><a href="{{ route('doctors.index') }}">All Doctors</a></li>
+                <li><a href="{{ route('doctors.create') }}">Add a new Doctor</a></li>
+                <li><a href="{{ route('doctors.show') }}">Show a doctor</a></li>
             </ul>
         </nav>
     </header>
