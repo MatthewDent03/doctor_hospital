@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
-
-Route::get('/', [UserController::class, 'home'])->name('home');
-Route::get('/about', [UserController::class, 'about'])->name('about');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +13,4 @@ Route::get('/about', [UserController::class, 'about'])->name('about');
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('doctors', 'DoctorController');
