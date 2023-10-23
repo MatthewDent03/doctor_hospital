@@ -19,7 +19,7 @@
                 <td>{{ $doctor->email }}</td>
                 <td>{{ $doctor->phone_number }}</td>
                 <td>
-                    @if ($book->book_image)
+                    @if ($doctor->doctor_image)
                         <img src="{{ $doctor->doctor_image }}"
                         alt="{{ $doctor->title }}" width="100">
                     @else
