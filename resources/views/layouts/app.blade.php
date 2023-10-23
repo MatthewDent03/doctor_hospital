@@ -12,8 +12,9 @@
         <nav>
             <ul>
                 <li><a href="{{ route('doctors.index') }}">All Doctors</a></li>
-                <li><a href="{{ route('doctors.create') }}">Add a new Doctor</a></li>
-                <li><a href="{{ route('doctors.show') }}">Show a doctor</a></li>
+                <!-- <li><a href="{{ route('doctors.create') }}">Add a new Doctor</a></li> -->
+              
+               
             </ul>
         </nav>
     </header>
