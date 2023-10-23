@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\DoctorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +14,4 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::resource('doctors', 'DoctorController');
+Route::resource('/doctors',DoctorController::class);
