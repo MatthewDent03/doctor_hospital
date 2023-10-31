@@ -1,32 +1,53 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Create Doctor') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    <h3 class="text-center">Create Doctor</h3>
-    <form action="{{ route('doctors.store') }}" method="post">
-        @csrf
-        <div class="form-group">
-            <label for="first_name">Doctor First Name</label>
-            <input type="text" name="first_name" id="first_name" class="
-            form-control {{ $errors->has('first_name') ? 'is-invalid' : '' }}" 
-            value="{{ old('first_name') }}" placeholder="Enter First Name">
-            @if($errors->has('first_name'))
-                <span class="invalid-feedback">
-                    {{ $errors->first('first_name') }}
-                </span>
-            @endif
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <form action="{{ route('doctors.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <x-text-input
+                        type="text"
+                        name="first_name"
+                        field="first_name"
+                        placeholder="First Name..."
+                        class="w-full"
+                        autocomplete="off"
+                        :value="@old('first_name')"></x-text-input>
+
+                    <x-text-input
+                        type="text"
+                        name="last_name"
+                        field="last_name"
+                        placeholder="Last Name..."
+                        class="w-full mt-6"
+                        :value="@old('last_name')"></x-text-input>
+
+                    <!-- I created a new component called textarea, you will need to do the same to using the x-textarea component -->
+                    <x-textarea
+                        name="facility"
+                        field="facility"
+                        placeholder="Facility..."
+                        class="w-full mt-6"
+                        :value="@old('facility')">
+                    </x-textarea>
+                  
+                    <x-file-input
+                        type="text"
+                        name="phone_number"
+                        placeholder="Phone Number..."
+                        class="w-full mt-6"
+                        field="phone_number"
+                        :value="@old('phone_number')">>
+                    </x-file-input>
+
+                    <x-primary-button class="mt-6">Save Doctor</x-primary-button>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="body">Doctor Last Name</label>
-            <input type="text" name="last_name" id="last_name" class="
-            form-control {{ $errors->has('last_name') ? 'is-invalid' : '' }}" 
-            value="{{ old('last_name') }}" placeholder="Enter Last Name">
-            @if($errors->has('last_name'))
-                <span class="invalid-feedback">
-                    {{ $errors->first('last_name') }}
-                </span>
-            @endif
-        </div>
-        <div class=
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-@endsection
+    </div>
+</x-app-layout>
