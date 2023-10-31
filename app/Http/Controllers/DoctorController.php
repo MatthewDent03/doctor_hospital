@@ -87,8 +87,21 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($doctor)
     {
-        //
+        // Find the record by its ID
+        $doctor = Doctor::find($doctor);
+    
+        // Check if the record exists
+        if (!$doctor) {
+            return redirect()->route('doctors.index')->with('error', 'Doctor record was not found.');
+        }
+    
+        // Delete the record
+        $doctor->delete();
+    
+        // Redirect with a success message
+        return redirect()->route('doctors.index')->with('success', 'Doctor record was deleted successfully.');
     }
+    
 }

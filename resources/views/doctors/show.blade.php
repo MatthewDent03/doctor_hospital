@@ -38,6 +38,7 @@
                         </tbody>
                     </table>
                     <x-primary-button><a href="{{ route('doctors.edit', $doctor) }}">Edit</a> </x-primary-button>
+                    <x-primary-button><a href="{{ route('doctors.delete', $doctor) }}">Delete</a> </x-primary-button>
                 </div>
             </div>
         </div>
