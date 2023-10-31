@@ -16,6 +16,14 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-m-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors.index')">
+                        {{ __('All Doctors') }}
+                    </x-nav-link>
+                </div>
+                <div>
+                    
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
