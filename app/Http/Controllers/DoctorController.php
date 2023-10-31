@@ -63,9 +63,25 @@ class DoctorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Doctor $doctor)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'facility' => 'required',
+            'phone_number' => 'required',
+        ]);
+
+        $doctor->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'facility' => $request->facility,
+            'phone_number' => $request->phone_number
+        ]);
+
+        return to_route('doctors.show', $doctor)->with('success', 'Doctor updated successfully');
     }
 
     /**
