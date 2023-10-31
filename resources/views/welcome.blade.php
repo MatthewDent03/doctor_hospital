@@ -34,11 +34,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">Matt's Doctor page.</div>
-            
+                            <div class="card-header">Matt's Doctor Page.</div>
+
                             <div class="card-body">
                                 <p>
-                                    Welcome to the home page for Matt's Doctor List (This is the welcome view)
+                                    Welcome to the home page for Matt's Doctor Page (This is the welcome view)
                                 </p>
                             </div>
                         </div>
