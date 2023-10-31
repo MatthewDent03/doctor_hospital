@@ -35,6 +35,14 @@
                         class="w-full mt-6"
                         :value="@old('facility')">
                     </x-textarea>
+
+                    <x-textarea
+                        name="email"
+                        field="email"
+                        placeholder="Email..."
+                        class="w-full mt-6"
+                        :value="@old('email')">
+                    </x-textarea>
                   
                     <x-textarea
                         type="text"
