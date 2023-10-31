@@ -30,10 +30,10 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'phone_number' => 'required',
+            'first_name' => ['required', 'alpha'],
+            'last_name' => ['required', 'alpha'],
+            'email' => ['required', 'email'],
+            'phone_number' => ['required', 'numeric'],
             'facility' => 'required'
         ]);
 
@@ -70,11 +70,11 @@ class DoctorController extends Controller
     public function update(Request $request, Doctor $doctor)
     {
         $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
+            'first_name' => ['required', 'alpha'],
+            'last_name' => ['required', 'alpha'],
+            'email' => ['required', 'email'],
             'facility' => 'required',
-            'phone_number' => 'required|max:10'
+            'phone_number' => ['required', 'numeric']
         ]);
 
         $doctor->update([
@@ -88,24 +88,18 @@ class DoctorController extends Controller
         return to_route('doctors.show', $doctor)->with('success', 'Doctor updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy($doctor)
     {
-        // Find the record by its ID
-        $doctor = Doctor::find($doctor);
+        $doctor = Doctor::find($doctor); //find the doctor when entering from show on index
     
-        // Check if the record exists
         if (!$doctor) {
             return redirect()->route('doctors.index')->with('error', 'Doctor record was not found.');
-        }
+        } //If deleted return to index page and produce error message
     
-        // Delete the record
-        $doctor->delete();
+        $doctor->delete(); //run doctor delete in show
     
-        // Redirect with a success message
         return redirect()->route('doctors.index')->with('success', 'Doctor record was deleted successfully.');
-    }
+    } //return to index page and produce alert for successful delete
     
 }

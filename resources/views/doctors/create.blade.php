@@ -44,14 +44,14 @@
                         :value="@old('email')">
                     </x-textarea>
                   
-                    <x-textarea
-                        type="text"
+                    <x-text-input
+                        type="number"
                         name="phone_number"
                         placeholder="Phone Number..."
                         class="w-full mt-6"
                         field="phone_number"
                         :value="@old('phone_number')">>
-                    </x-textarea>
+                    </x-text-input>
 
                     <x-primary-button class="mt-6">Create Doctor</x-primary-button>
                 </form>

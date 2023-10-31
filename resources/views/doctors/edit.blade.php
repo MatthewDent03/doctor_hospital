@@ -49,7 +49,7 @@
                 </x-text-input>
 
                 <x-text-input
-                    type="text"
+                    type="number"
                     name="phone_number"
                     field="phone_number"
                     placeholder="Phone Number..."
