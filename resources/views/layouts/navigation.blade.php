@@ -21,8 +21,10 @@
                         {{ __('All Doctors') }}
                     </x-nav-link>
                 </div>
-                <div>
-                    
+                <div class="hidden space-x-8 sm:-m-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('doctors.create')" :active="request()->routeIs('doctors.create')">
+                        {{ __('Create Doctor') }}
+                    </x-nav-link>
                 </div>
             </div>
 
