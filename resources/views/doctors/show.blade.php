@@ -1,29 +1,41 @@
-@extends('layouts.app')
-@section('content')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Dashboard
+        </h2>
+    </x-slot>
 
-<div class="container">
-    <h1>VIEW Doctor</h1>
-    <table class="table table-hover">
-        <tbody>
-            <tr>
-                <th><strong> First Name </strong></th>
-                <td>{{ $doctor->first_name }}</td>
-                <th><strong> Last Name </strong></th>
-                <td>{{ $doctor->last_name }}</td>
-            </tr>
-
-            <tr>
-                <th><strong> Email </strong></th>
-                <td>{{ $doctor->email }}</td>
-            </tr>
-                <th><strong> Phone Number </strong></th>
-                <td>{{ $doctor->phone_number }}</td>
-            
-            <tr>
-                <th><strong> Facility </strong></th>
-                <td>{{ $doctor->facility }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-@endsection
+    <!-- Page Content -->
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="font-bold ">First Name  </td>
+                                <td>{{ $doctor->first_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold ">Last Name  </td>
+                                <td>{{ $doctor->last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Email </td>
+                                <td>{{ $doctor->email }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold ">Facility </td>
+                                <td>{{ $doctor->facility }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold ">Phone Number  </td>
+                                <td>{{ $doctor->phone_number }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
