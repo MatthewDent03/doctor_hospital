@@ -13,6 +13,11 @@
             </x-alert-success>
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
+                <form method="POST" action="{{ route('doctors.destroy', $doctor->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">DELETE</button>
+                </form>
                     <table class="table table-hover">
                         <tbody>
                             <tr>
@@ -38,7 +43,6 @@
                         </tbody>
                     </table>
                     <x-primary-button><a href="{{ route('doctors.edit', $doctor) }}">Edit</a> </x-primary-button>
-                    <x-primary-button><a href="{{ route('doctors.delete', $doctor) }}">Delete</a> </x-primary-button>
                 </div>
             </div>
         </div>
