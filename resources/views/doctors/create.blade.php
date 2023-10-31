@@ -36,16 +36,16 @@
                         :value="@old('facility')">
                     </x-textarea>
                   
-                    <x-file-input
+                    <x-textarea
                         type="text"
                         name="phone_number"
                         placeholder="Phone Number..."
                         class="w-full mt-6"
                         field="phone_number"
                         :value="@old('phone_number')">>
-                    </x-file-input>
+                    </x-textarea>
 
-                    <x-primary-button class="mt-6">Save Doctor</x-primary-button>
+                    <x-primary-button class="mt-6">Create Doctor</x-primary-button>
                 </form>
             </div>
         </div>
