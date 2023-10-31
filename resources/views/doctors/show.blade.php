@@ -16,7 +16,7 @@
                 <form method="POST" action="{{ route('doctors.destroy', $doctor->id) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">DELETE</button>
+                    <x-tertiary-button type="submit" class="btn btn-danger">DELETE</x-tertiary-button>
                 </form>
                     <table class="table table-hover">
                         <tbody>
