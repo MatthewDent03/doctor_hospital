@@ -7,27 +7,17 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('doctors.filterAscending') }}" class="btn btn-primary">Filter by Ascending</a>
-            <a href="{{ route('doctors.filterDescending') }}" class="btn btn-primary">Filter by Descending</a>
+
+            <a href="{{ route('doctors.create') }}" class="btn-link btn-lg mb-2">Add a Doctor</a>
             @forelse ($doctors as $doctor)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
-                    <a href="{{ route('doctors.show', $doctor) }}">
-                    @if ($doctor) 
-                        {{ $doctor->first_name }}{{ $doctor->last_name }}
-                    @else
-                        Unknown Doctor
-                    @endif
-                    </a>
+                    <a href="{{ route('doctors.show', $doctor) }}">{{ $doctor->first_name }}{{ $doctor->last_name }}</a>
                     </h2>
                     <p class="mt-2">
-                        @if ($doctor)
-                            {{ $doctor->email }}
-                            {{$doctor->phone_number}}
-                            {{$doctor->facility}}
-                        @else
-                            Unknown Details 
-                        @endif
+                        {{ $doctor->email }}
+                        {{$doctor->phone_number}}
+                        {{$doctor->facility}}
                     </p>
 
                 </div>
@@ -38,4 +28,3 @@
         </div>
     </div>
 </x-app-layout>
-

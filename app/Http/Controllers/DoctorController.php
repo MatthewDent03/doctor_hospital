@@ -106,18 +106,18 @@ class DoctorController extends Controller
     } //return to index page and produce alert for successful delete
     
 
-
-    public function filterAscending()
-    {
-        $doctors = Doctor::orderBy('name', 'asc')->get();
+//Attempt of filtering by ascension and descension
+    // public function filterAscending()
+    // {
+    //     $doctors = Doctor::orderBy('name', 'asc')->get();
         
-        return view('doctors.index', compact('doctors'));
-    }
+    //     return view('doctors.index', compact('doctors'));
+    // }
 
-    public function filterDescending()
-    {
-        $doctors = Doctor::orderBy('name', 'desc')->get();
+    // public function filterDescending()
+    // {
+    //     $doctors = Doctor::orderBy('name', 'desc')->get();
         
-        return view('doctors.index', compact('doctors'));
-    }
+    //     return view('doctors.index', compact('doctors'));
+    // }
 }
