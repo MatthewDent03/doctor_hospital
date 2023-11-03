@@ -89,14 +89,17 @@ class DoctorController extends Controller
     }
 
 
-    public function destroy($doctor)
+    public function destroy(Doctor $doctor)
     {
+
+
+        /* This function is for if a search method is available and will return that the doctor is not there
         $doctor = Doctor::find($doctor); //find the doctor when entering from show on index
     
         if (!$doctor) {
             return redirect()->route('doctors.index')->with('error', 'Doctor record was not found.');
         } //If deleted return to index page and produce error message
-    
+    */
         $doctor->delete(); //run doctor delete in show
     
         return redirect()->route('doctors.index')->with('success', 'Doctor record was deleted successfully.');
