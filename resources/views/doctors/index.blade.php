@@ -9,6 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <a href="{{ route('doctors.filterAscending') }}" class="btn btn-primary">Filter by Ascending</a>
             <a href="{{ route('doctors.filterDescending') }}" class="btn btn-primary">Filter by Descending</a>
+            @forelse ($doctors as $doctor)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
                     <a href="{{ route('doctors.show', $doctor) }}">{{ $doctor->first_name }}{{ $doctor->last_name }}</a>
