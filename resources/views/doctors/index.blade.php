@@ -24,7 +24,11 @@
             @empty
             <p>No doctors</p>
             @endforelse
+            
 
+            <div class="pagination">
+                {{ $doctors->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>

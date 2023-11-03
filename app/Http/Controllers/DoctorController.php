@@ -14,6 +14,8 @@ class DoctorController extends Controller
     {
         $doctors = Doctor::all();
         return view('doctors.index', compact('doctors'));
+
+        $doctors = Doctor::paginate(3);
     }
 
     /**
@@ -120,11 +122,5 @@ class DoctorController extends Controller
         
     //     return view('doctors.index', compact('doctors'));
     // }
-
-        public function indexPaging()
-        {
-            $doctors = Doctor::paginate(3);
-            return view('doctors.index-paging')->with('doctors', $doctors);
-        }
 
 }
