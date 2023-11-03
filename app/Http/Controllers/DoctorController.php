@@ -14,7 +14,7 @@ class DoctorController extends Controller
     {
         $doctors = Doctor::all();
         $doctors = Doctor::paginate(5);
-        $doc
+        
         return view('doctors.index', compact('doctors'));
 
     }
