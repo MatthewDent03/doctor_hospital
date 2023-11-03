@@ -41,7 +41,7 @@
                         <tr>
                             <td><x-primary-button><a href="{{ route('doctors.edit', $doctor) }}">Edit</a> </x-primary-button></td>
                             
-                            <td><form method="POST" action="{{ route('doctors.destroy', $doctor->id) }}"> @csrf @method('DELETE') <x-tertiary-button type="submit" class="btn btn-danger">DELETE</x-tertiary-button></form></td>
+                            <td><form method="POST" action="{{ route('doctors.destroy', $doctor->id) }}"> @csrf @method('DELETE') <x-tertiary-button onclick="return confirm('Are you sure you want to delete?')">DELETE</x-tertiary-button></form></td>
                         </tr>
                     </table>               
                 </div>
