@@ -30,5 +30,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('/doctors',DoctorController::class);
+Route::get('/doctors/filterAscending', 'DoctorController@filterAscending')->name('doctors.filterAscending');
+
+Route::get('/doctors/filterDescending', 'DoctorController@filterDescending')->name('doctors.filterDescending');
+
 
 require __DIR__.'/auth.php';

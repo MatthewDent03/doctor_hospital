@@ -105,4 +105,19 @@ class DoctorController extends Controller
         return redirect()->route('doctors.index')->with('success', 'Doctor record was deleted successfully.');
     } //return to index page and produce alert for successful delete
     
+
+
+    public function filterAscending()
+    {
+        $doctors = Doctor::orderBy('name', 'asc')->get();
+        
+        return view('doctors.index', compact('doctors'));
+    }
+
+    public function filterDescending()
+    {
+        $doctors = Doctor::orderBy('name', 'desc')->get();
+        
+        return view('doctors.index', compact('doctors'));
+    }
 }
