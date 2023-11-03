@@ -12,12 +12,22 @@
             @forelse ($doctors as $doctor)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
-                    <a href="{{ route('doctors.show', $doctor) }}">{{ $doctor->first_name }}{{ $doctor->last_name }}</a>
+                    <a href="{{ route('doctors.show', $doctor) }}">
+                    @if ($doctor) 
+                        {{ $doctor->first_name }}{{ $doctor->last_name }}
+                    @else
+                        Unknown Doctor
+                    @endif
+                    </a>
                     </h2>
                     <p class="mt-2">
-                        {{ $doctor->email }}
-                        {{$doctor->phone_number}}
-                        {{$doctor->facility}}
+                        @if ($doctor)
+                            {{ $doctor->email }}
+                            {{$doctor->phone_number}}
+                            {{$doctor->facility}}
+                        @else
+                            Unknown Details 
+                        @endif
                     </p>
 
                 </div>
