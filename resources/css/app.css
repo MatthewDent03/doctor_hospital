@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* Setting the background colour of the webpage to a lilac colour using css */
 .bg-white {
     background-color: #eccef5;
 };
