@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+//Created a route to the resource folder to access the controller class to allow all functions within and views in resources to be active with one another
 Route::resource('/doctors',DoctorController::class);
 
 require __DIR__.'/auth.php';
