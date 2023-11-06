@@ -1,4 +1,4 @@
-<div>
+<div> <!-- Created a textarea component for the views for text boxes, does not limit rows -->
     @props(['disabled' => false, 'field' => '', 'value' => ''])
 
     <input 
