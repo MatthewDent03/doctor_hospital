@@ -1,5 +1,5 @@
 <?php
-
+//This table created through migrations links between the model and imports it as a class
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -8,7 +8,7 @@ use App\Models\Doctor;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * The migrations are ran which creates the false data variables for the index
      */
     public function up()
     {
@@ -24,7 +24,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * If this migration already exists delete the stored data and tables
      */
     public function down()
     {
