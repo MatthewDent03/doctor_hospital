@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout> <!-- Imported app layout from app blade -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('All Doctors') }}
@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
+<!-- created route to create function in controller, a forelse loops the doctors components and creates functionality with the show view to display the attributers -->
             <a href="{{ route('doctors.create') }}" class="btn-link btn-lg mb-2">Add a Doctor</a>
             @forelse ($doctors as $doctor)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
@@ -25,7 +25,7 @@
             <p>No doctors</p>
             @endforelse
             
-
+<!-- Activating the pagination premade feature with laravel in the index view through the controller -->
             <div class="pagination">
                 {{ $doctors->links() }}
             </div>
