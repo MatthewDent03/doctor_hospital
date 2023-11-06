@@ -1,5 +1,5 @@
 <?php
-
+//This controller focuses on processing requests from the http requests through the specified route
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class DoctorController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * This function displays the basic layout for the index of the webpage with the other routes available
+     * The paginate function for the Doctor class displays a limited number of components on the index page
+     * Returns to the updated index page after runnning these prompts
      */
     public function index()
     {
@@ -19,7 +21,8 @@ class DoctorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * The create function changes the view when clicked on the button to the create view
+     * The create view leads onto creating new components for the database to store
      */
     public function create()
     {
@@ -27,7 +30,9 @@ class DoctorController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * The store function stores the data for the component that was created in the create view
+     * Through the store function is a validation method, this runs various requests for data types and requirements
+     * Returns the view to the index once stored 
      */
     public function store(Request $request)
     {
@@ -50,7 +55,9 @@ class DoctorController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show Id is a function which is used within the show view and resource
+     * When a doctor is clicked on in the index it focuses on that component's data and displays options related to it
+     * Does not change page until another view is reached through the resource and controller connection
      */
     public function show($id)
     {
@@ -59,7 +66,9 @@ class DoctorController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * The edit function allows the user to edit the data of the component
+     * When the button is clicked it brings the user to the edit view
+     * After editing options appear to escape/continue the process of editing to change view
      */
     public function edit(Doctor $doctor)
     {
@@ -67,7 +76,9 @@ class DoctorController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * The update function runs after the confirm button in the edit view is clicked
+     * The data that was inputted is then processed in a validation method checking the data types and if it is verified
+     * The route is changed back to the show view with the success message popup displaying
      */
     public function update(Request $request, Doctor $doctor)
     {
@@ -90,7 +101,7 @@ class DoctorController extends Controller
         return to_route('doctors.show', $doctor)->with('success', 'Doctor updated successfully');
     }
 
-
+    //The destroy function is accessed through a button in the edit/show view which deletes the component and it's data from the database
     public function destroy(Doctor $doctor)
     {
 
