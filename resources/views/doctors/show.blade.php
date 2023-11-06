@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout> <!-- imported app layout, activates the success alert with sessions. The table holds the components with data -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Dashboard
@@ -40,7 +40,7 @@
                     <table>
                         <tr>
                             <td><x-primary-button><a href="{{ route('doctors.edit', $doctor) }}">Edit</a> </x-primary-button></td>
-                            
+                            <!-- created a button for route for the edit function in the controller and the destroy function -->
                             <td><form method="POST" action="{{ route('doctors.destroy', $doctor->id) }}"> @csrf @method('DELETE') <x-tertiary-button onclick="return confirm('Are you sure you want to delete?')">DELETE</x-tertiary-button></form></td>
                         </tr>
                     </table>               
