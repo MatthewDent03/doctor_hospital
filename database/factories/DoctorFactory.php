@@ -1,5 +1,6 @@
 <?php
-
+//The doctorfactory is a feature of Eloquent Object Relational Mapping, this allows the user to create model instances
+//These model instances are used for seeding the database and generating fake sample data for the attributes.
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -11,7 +12,7 @@ class DoctorFactory extends Factory
 {
     /**
      * Define the model's default state.
-     *
+     * The general state of data type is sentence because it is most fitting as special characters are required and are defined later through validation methods in the controller
      * @return array<string, mixed>
      */
     public function definition(): array
