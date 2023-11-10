@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
+use App\Http\Controllers\User\DoctorController as UserDoctorController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 //Created a route to the resource folder to access the controller class to allow all functions within and views in resources to be active with one another
 Route::resource('/doctors',DoctorController::class);
+Route::resource('/admin/doctors', AdminDoctorController::class)->middleware(['auth'])->names('admin.doctors');
+Route::resource('/user/doctors', UserDoctorController::class)->middleware(['auth'])->names('user.books')->only(['index', 'show']);
 
 require __DIR__.'/auth.php';
