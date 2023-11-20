@@ -22,6 +22,6 @@ class DoctorController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('user');
         $doctor = Doctor::find($id);
-        return view('user.doctors.show')->with('doctors', $doctor);
+        return view('user.doctors.show')->with('doctor', $doctor);
     }
 }
