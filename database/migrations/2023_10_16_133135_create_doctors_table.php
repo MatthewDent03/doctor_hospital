@@ -13,21 +13,30 @@ return new class extends Migration
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('facility');
-            $table->string('email');
-            $table->string('phone_number');
-            $table->timestamps();
+            $table->unsignedBigInteger('hospital_id');
+            $table->foreign('hospital_id')->references('id')->on('hospital')->onUpdate('cascade')->onDelete('restrict');
+            // $table->id();
+            // $table->string('first_name');
+            // $table->string('last_name');
+            // $table->string('facility');
+            // $table->string('email');
+            // $table->string('phone_number');
+            // $table->timestamps();
         });
     }
 
     /**
-     * If this migration already exists delete the stored data and tables
+     * Reverse the migrations.   
+     * 
+     * @return void
      */
+
     public function down()
     {
-        Schema::dropIfExists('doctors');
+        Schema::table('doctors', function (Blueprint $table) {
+            $table->dropForeign(['hospital_id']);
+                $table->dropColumn('hospital_id');
+        });
+        // Schema::dropIfExists('doctors');
     }
 };
