@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller as BaseController;
 
-class DoctorController extends BaseController
+class DoctorController extends Controller
 {
     public function index()
     {
