@@ -14,10 +14,12 @@ class HospitalFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name,
+            'address' => $this->faker->address,
+            'phone_number' => $this->faker->phone_number,
         ];
     }
 }
