@@ -12,11 +12,14 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+     * 
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
-        Doctor::factory()->count(50)->create();
+        // Doctor::factory()->count(50)->create();
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(HospitalSeeder::class);
     }
 }
