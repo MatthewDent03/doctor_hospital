@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Doctor; // Add this line to import the Doctor model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Routing\Controller as BaseController;
 
 class DoctorController extends Controller
 {

@@ -34,8 +34,8 @@ Route::middleware('auth')->group(function () {
 
 //Created a route to the resource folder to access the controller class to allow all functions within and views in resources to be active with one another
 Route::resource('/doctors',DoctorController::class);
-Route::resource('/admin/doctors', AdminDoctorController::class)->middleware(['auth'])->names('admin.doctors');
-//Route::resource('/user/doctors', UserDoctorController::class)->middleware(['auth'])->names('user.books')->only(['index', 'show']);
+Route::resource('/admin/doctors', AdminDoctorController::class)->names('admin.doctors');
+// Route::resource('/user/doctors', UserDoctorController::class)->middleware(['auth'])->names('user.books')->only(['index', 'show']);
 Route::name('user.doctors.')->middleware(['auth'])->group(function () {
     Route::get('/doctors', 'User\DoctorController@index')->name('index');
 });
