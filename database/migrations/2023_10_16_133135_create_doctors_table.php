@@ -1,42 +1,42 @@
 <?php
-//This table created through migrations links between the model and imports it as a class
+namespace App\Database\Migrations;
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Doctor;
 
-return new class extends Migration
+class CreateDoctorsTable extends Migration
 {
     /**
-     * The migrations are ran which creates the false data variables for the index
+     * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->unsignedBigInteger('hospital_id');
-            $table->foreign('hospital_id')->references('id')->on('hospital')->onUpdate('cascade')->onDelete('restrict');
-            // $table->id();
-            // $table->string('first_name');
-            // $table->string('last_name');
-            // $table->string('facility');
-            // $table->string('email');
-            // $table->string('phone_number');
-            // $table->timestamps();
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('facility');
+            $table->string('email');
+            $table->string('phone_number');
+            $table->timestamps();
         });
     }
+    
 
     /**
-     * Reverse the migrations.   
-     * 
-     * @return void
+     * Reverse the migrations.
      */
+    public function down(): void
+    {
+       // $table->dropForeign('hospital_id');
+        Schema::dropIfExists('doctors');
+    }
 
-    public function down()
+    public function addHospitalIdColumn(): void
     {
         Schema::table('doctors', function (Blueprint $table) {
-            $table->dropForeign(['hospital_id']);
-                $table->dropColumn('hospital_id');
+            $table->unsignedBigInteger('hospital_id')->after('id');
         });
-        // Schema::dropIfExists('doctors');
     }
 };
