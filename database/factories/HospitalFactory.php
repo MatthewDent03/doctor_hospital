@@ -19,7 +19,7 @@ class HospitalFactory extends Factory
         return [
             'name' => $this->faker->name,
             'address' => $this->faker->address,
-            'phone_number' => $this->faker->phone_number,
+            'phone_number' => $this->faker->sentence,
         ];
     }
 }
