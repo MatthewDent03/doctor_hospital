@@ -36,6 +36,14 @@
                                 <td class="font-bold ">Phone Number  </td>
                                 <td>{{ $doctor->phone_number }}</td>
                             </tr>
+                            <tr>
+                                <td class="font-bold ">Hospital Name </td>
+                                <td>{{ $doctor->hospital->name }}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold ">Hospital Phone Number </td>
+                                <td>{{ $doctor->hospital->phone_number }}</td>
+                            </tr>
                         </tbody>
                     </table>            
                 </div>
