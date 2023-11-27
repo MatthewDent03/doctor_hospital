@@ -13,7 +13,9 @@ class DoctorController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        $doctors = Doctor::paginate(10);
+        // $doctors = Doctor::paginate(10);
+        $doctors = Doctor::with('hospital')->get();
+
         return view('admin.doctors.index')->with('doctors', $doctors);
     }
 

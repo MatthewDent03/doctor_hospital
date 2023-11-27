@@ -18,6 +18,9 @@
                     <a href="{{ route('admin.doctors.show', $doctor) }}">{{ $doctor->first_name }}{{ $doctor->last_name }}</a>
                     </h2>
                     <p class="mt-2">
+
+                        <h3 class="font-bold text-1x1"> <strong> Hospital Name </strong>
+                        {{$doctor->hospital->name}} </h3>
                         {{ $doctor->email }}
                         {{$doctor->phone_number}}
                         {{$doctor->facility}}
@@ -29,9 +32,7 @@
             @endforelse
             
 <!-- Activating the pagination premade feature with laravel in the index view through the controller -->
-            <div class="pagination">
-                {{ $doctors->links() }}
-            </div>
+
         </div>
     </div>
 </x-app-layout>
