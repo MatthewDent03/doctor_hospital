@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Hospital;
 
-class HospitalController extends Controller
+class AdminHospitalController extends Controller
 {
     /**
      * Display a listing of the resource.
