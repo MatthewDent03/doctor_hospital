@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Hospital;
 
 class HospitalController extends Controller
 {
@@ -13,7 +15,7 @@ class HospitalController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $user->authorizeRoles('admmin');
+        $user->authorizeRoles('admin');
         $hospitals = Hospital::all();
 
         return view('admin.hospitals.index')->with('hospitals', $hospitals);
@@ -24,7 +26,12 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $hospitals = Hospital::all();
+
+        return view('admin.hospitals.create')->with('hospitals', $hospitals);
     }
 
     /**
@@ -32,7 +39,24 @@ class HospitalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        $request->validate([
+            'name' => ['required', 'alpha'],
+            'phone_number' => ['required', 'numeric'],
+            'address' => 'required',
+            'hospital_id' => 'required',
+        ]);
+
+        Hospital::create([
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'hospital_id' => $request->hospital_id,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return to_route('admin.hospitals.index');
     }
 
     /**
@@ -40,7 +64,22 @@ class HospitalController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('Admin');
+
+        if (!Auth::id()) {
+            return abort(403);
+        }
+
+        $hospital = Hospital::find($id);
+
+        if (!$hospital) {
+            return abort(404);
+        }
+
+        $doctors = $hospital->doctors;
+
+        return view('admin.hospitals.show', compact('hospital', 'doctors'));
     }
 
     /**
@@ -48,7 +87,18 @@ class HospitalController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $hospital = Hospital::find($id);
+
+        if (!$hospital) {
+            return abort(404);
+        }
+
+        $hospitals = Hospital::all();
+
+        return view('admin.hospitals.edit', compact('hospital', 'hospitals'));
     }
 
     /**
@@ -56,7 +106,27 @@ class HospitalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        $request->validate([
+            'name' => ['required', 'alpha'],
+            'address' => 'required',
+            'phone_number' => ['required', 'numeric']
+        ]);
+
+        $hospital = Hospital::find($id);
+
+        if (!$hospital) {
+            return abort(404);
+        }
+
+        $hospital->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number
+        ]);
+
+        return redirect()->route('admin.hospitals.show', $hospital->id)->with('success', 'Hospital updated successfully');
     }
 
     /**
@@ -64,6 +134,16 @@ class HospitalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        $hospital = Hospital::find($id);
+
+        if (!$hospital) {
+            return abort(404);
+        }
+
+        $hospital->delete(); 
+        return redirect()->route('admin.hospitals.index')->with('success', 'Hospital record was deleted successfully.');
     }
 }
