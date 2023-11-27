@@ -10,15 +10,16 @@ class Doctor extends Model
 {
     use HasFactory;
 //The protected function sets all the attributes together for the create and update functions in the controller
-    protected $guarded = [];
+    // protected $guarded = [];
 
-    // protected $fillable = [
-    //     'first_name',
-    //     'last_name',
-    //     'facility',
-    //     'email',
-    //     'phone_number',
-    // ];
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'facility',
+        'email',
+        'phone_number',
+        'hospital_id'
+    ];
 
     public function hospital()
     {

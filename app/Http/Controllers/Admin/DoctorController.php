@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Doctor; // Add this line to import the Doctor model
+use App\Models\Hospital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,10 @@ class DoctorController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        return view('admin.doctors.create');
+
+        $hospitals = Hospital::all();
+
+        return view('admin.doctors.create')->with('hospitals', $hospitals);
     }
 
     public function store(Request $request)
@@ -35,7 +39,8 @@ class DoctorController extends Controller
             'last_name' => ['required', 'alpha'],
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'numeric'],
-            'facility' => 'required'
+            'facility' => 'required',
+            'hospital_id' => 'required',
         ]);
 
         Doctor::create([
@@ -43,7 +48,10 @@ class DoctorController extends Controller
             'last_name' => $request->last_name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
-            'facility' => $request->facility
+            'facility' => $request->facility,
+            'hospital_id' => $request->hospital_id,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
         return to_route('admin.doctors.index');
     }
@@ -60,7 +68,10 @@ class DoctorController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        return view('admin.doctors.edit')->with('doctor', $doctor);
+
+        $hospitals = Hospital::all();
+
+        return view('admin.doctors.edit', compact('doctor', 'hospitals'));
     }
 
     public function update(Request $request, Doctor $doctor)
