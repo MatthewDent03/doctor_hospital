@@ -12,7 +12,11 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admmin');
+        $hospitals = Hospital::all();
+
+        return view('admin.hospitals.index')->with('hospitals', $hospitals);
     }
 
     /**

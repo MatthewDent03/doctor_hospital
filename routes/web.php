@@ -4,6 +4,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 use App\Http\Controllers\User\DoctorController as UserDoctorController;
+use App\Http\Controllers\Admin\HospitalController as AdminHospitalController;
+use App\Http\Controllers\User\HospitalController as UserHospitalController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ProfileController;
 
@@ -36,7 +38,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('/doctors',DoctorController::class);
 Route::resource('/admin/doctors', AdminDoctorController::class)->names('admin.doctors');
 Route::resource('/user/doctors', UserDoctorController::class)->middleware(['auth'])->names('user.doctors')->only(['index', 'show']);
-
-
-
+Route::resource('admin/hospitals', AdminHospitalController::class)->middleware(['auth'])->names('admin.hospitals');
+Route::resource('user/hospitals', UserHospitalController::class)->middleware(['auth'])->names('user.hospitals')->only(['index', 'show']);
 require __DIR__.'/auth.php';
