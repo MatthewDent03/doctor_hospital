@@ -42,4 +42,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role', 'user_role');
+    }
+
+    public function authorizeRoles($roles)
+    {
+        if(is_arrayS($roles)){
+            return $this->hasAnyRole($roles) ||
+            abort (401, 'This user does not have acces to this function');
+        }
+        return $this->hasRole($roles) ||
+        abort(401, 'This user does not have acces to this function');
+    }
+
+    public function hasRole($role)
+    {
+        return null !== $this->roles()->where('name', $role)->first();
+    }
+
+    public function hasAnyRole($roles)
+    {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
 }
