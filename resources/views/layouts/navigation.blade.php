@@ -17,19 +17,21 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @if(auth()->user()->hasRole('admin'))
-                        <x-nav-link :href="route('admin.doctors.index')" :active="request()->routeIs('admin.doctors.index')">
-                            {{ __('All Doctors') }}
-                        </x-nav-link>
-                    @elseif(auth()->user()->hasRole('user'))
-                        <x-nav-link :href="route('user.doctors.index')" :active="request()->routeIs('user.doctors.index')">
-                            {{ __('All Doctors') }}
-                        </x-nav-link>
-                    @else
-                        <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors.index')">
-                            {{ __('All Doctors') }}
-                        </x-nav-link>
-                    @endif
+                    @auth
+                        @if(auth()->user()->hasRole('admin'))
+                            <x-nav-link :href="route('admin.doctors.index')" :active="request()->routeIs('admin.doctors.index')">
+                                {{ __('All Doctors') }}
+                            </x-nav-link>
+                        @elseif(auth()->user()->hasRole('user'))
+                            <x-nav-link :href="route('user.doctors.index')" :active="request()->routeIs('user.doctors.index')">
+                                {{ __('All Doctors') }}
+                            </x-nav-link>
+                        @else
+                            <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors.index')">
+                                {{ __('All Doctors') }}
+                            </x-nav-link>
+                        @endif
+                    @endauth
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
