@@ -30,7 +30,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <div class="font-sans antialiased">
+                            <div class="min-h-screen bg-gray-100">
+                                @include('layouts.navigation')
 
+                                @if (isset($header))
+                                    <header class="bg-white shadow">
+                                        <div class="max-w-7x1 mx-auto py-6 px-4 sm:px">
+                                            {{ $header }}
+                                        </div>
+                                    </header>
+                                @endif
+
+                                <main>
+                                    {{ $slot }}
+                            </main>
+                            </div>
+                        </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
