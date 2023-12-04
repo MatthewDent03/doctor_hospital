@@ -17,41 +17,39 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @auth
-                        @if(auth()->user()->hasRole('admin'))
-                            <x-nav-link :href="route('admin.doctors.index')" :active="request()->routeIs('admin.doctors.index')">
-                                {{ __('All Doctors') }}
-                            </x-nav-link>
-                        @elseif(auth()->user()->hasRole('user'))
-                            <x-nav-link :href="route('user.doctors.index')" :active="request()->routeIs('user.doctors.index')">
-                                {{ __('All Doctors') }}
-                            </x-nav-link>
-                        @else
-                            <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors.index')">
-                                {{ __('All Doctors') }}
-                            </x-nav-link>
-                        @endif
-                    @endauth
+                    @if(auth()->user()->hasRole('admin'))
+                        <x-nav-link :href="route('admin.doctors.index')" :active="request()->routeIs('admin.doctors.index')">
+                            {{ __('All doctors') }}
+                        </x-nav-link>
+                    @elseif(auth()->user()->hasRole('user'))
+                        <x-nav-link :href="route('user.doctors.index')" :active="request()->routeIs('user.doctors.index')">
+                            {{ __('All doctors') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('doctors.index')" :active="request()->routeIs('doctors.index')">
+                            {{ __('All doctors') }}
+                        </x-nav-link>
+                    @endif
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                         <x-nav-link :href="route('admin.doctors.create')" :active="request()->routeIs('admin.doctors.create')">
-                            {{ __('Create Doctor') }}
+                            {{ __('Create doctors') }}
                         </x-nav-link>
                   
                     @endif
-                </div>
+                </div>   
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @if(auth()->user()->hasRole('admin'))
                         <x-nav-link :href="route('admin.hospitals.index')" :active="request()->routeIs('admin.doctors.index')">
-                            {{ __('Hospitals') }}
+                            {{ __('hospitals') }}
                         </x-nav-link>
                     @elseif(auth()->user()->hasRole('user'))
                         <x-nav-link :href="route('user.hospitals.index')" :active="request()->routeIs('user.doctors.index')">
-                            {{ __('Hospitals') }}
+                            {{ __('hospitals') }}
                         </x-nav-link>
                     @endif
-                </div>                       
+                </div>             
           
 
             <!-- Settings Dropdown -->
