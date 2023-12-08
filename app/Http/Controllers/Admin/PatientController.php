@@ -28,15 +28,18 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Author $author)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+        $doctors = $patient->doctors;
+        return view('admin.patients.show', compact('patient', 'doctors'));
     }
 
     /**

@@ -45,6 +45,17 @@
                                 <td>{{ $doctor->hospital->phone_number }}</td>
                             </tr>
                         </tbody>
+
+                        
+                        @foreach ($doctor->patients as $patient)
+                            <tr>
+                                <td class="font-bold"> Patient </td>
+                                <td {{ $patient->name }}</td>
+                                <td {{ $patient->phone_number }}</td>
+                                <td {{ $patient->emergency_contact }}</td>
+                                <td {{ $patient->emergency_number }}</td>
+                            </tr>
+                        @endforeach
                     </table>            
                 </div>
             </div>

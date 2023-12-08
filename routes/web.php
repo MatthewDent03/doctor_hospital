@@ -67,6 +67,10 @@ Route::resource('/admin/doctors', AdminDoctorController::class)->middleware(['au
 Route::resource('/user/doctors', UserDoctorController::class)->middleware(['auth'])->names('user.doctors')->only(['index', 'show']);
 Route::resource('/admin/hospitals', AdminHospitalController::class)->middleware(['auth'])->names('admin.hospitals');
 Route::resource('/user/hospitals', UserHospitalController::class)->middleware(['auth'])->names('user.hospitals')->only(['index', 'show']);
+Route::resource('/admin/patients', AdminPatientController::class)->middleware(['auth'])->names('admin.patients');
+Route::resource('/user/patients', UserPatientController::class)->middleware(['auth'])->names('user.patients')->only(['index', 'show']);
+
+
 
 Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -77,3 +81,6 @@ Route::middleware('auth')->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+require __DIR__.'/auth.php';
