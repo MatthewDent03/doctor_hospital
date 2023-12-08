@@ -5,6 +5,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Patient;
+use App\Models\Hospital;
 
 class Doctor extends Model
 {
@@ -27,6 +29,6 @@ class Doctor extends Model
 
     public function patients()
     {
-        return $this->belongsToMany(Patient::class)->withTimestamps();
+        return $this->belongsToMany(Patient::class);
     }
 }

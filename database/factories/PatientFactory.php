@@ -14,16 +14,16 @@ class PatientFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
             'name' => $this->faker->name,
             'emergency_contact' => $this->faker->name,
-            'phone_number' => $this->faker->realText,
-            'emergency_number' => $this->faker->realText,
+            'phone_number' => $this->faker->sentence,
+            'emergency_number' => $this->faker->sentence,
             'address' => $this->faker->address,
             'age' => $this->faker->numberBetween(18, 70),
-            'gender' => $this->faker->realText
+            'gender' => $this->faker->sentence
         ];
     }
 }

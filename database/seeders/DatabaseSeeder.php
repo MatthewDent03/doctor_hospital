@@ -4,18 +4,15 @@ namespace Database\Seeders;
 use App\Models\Doctor;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Patient;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     * 
-     * @return void
-     */
-    public function run()
+
+    public function run(): void
     {
         // Doctor::factory()->count(50)->create();
         $this->call(RoleSeeder::class);
