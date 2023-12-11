@@ -34,9 +34,12 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Author $author)
     {
-        //
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+        $doctors = $patient->doctors;
+        return view('user.patients.show', compact('patient', 'doctors'));
     }
 
     /**
