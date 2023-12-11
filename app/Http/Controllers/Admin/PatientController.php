@@ -74,7 +74,19 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
+
+        if (!Auth::id()) {
+            return abort(403);
+        }
+
+        $patient = Patient::find($id);
+
+        if (!$patient) {
+            return abort(404);
+        }
+
         $doctors = $patient->doctors;
+
         return view('admin.patients.show', compact('patient', 'doctors'));
     }
 
