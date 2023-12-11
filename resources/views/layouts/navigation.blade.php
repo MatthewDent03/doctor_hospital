@@ -45,11 +45,39 @@
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         @if(auth()->user()->hasRole('admin'))
                             <x-nav-link :href="route('admin.hospitals.index')" :active="request()->routeIs('admin.doctors.index')">
-                                {{ __('hospitals') }}
+                                {{ __('All hospitals') }}
                             </x-nav-link>
                         @elseif(auth()->user()->hasRole('user'))
                             <x-nav-link :href="route('user.hospitals.index')" :active="request()->routeIs('user.doctors.index')">
-                                {{ __('hospitals') }}
+                                {{ __('All hospitals') }}
+                            </x-nav-link>
+                        @endif
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        @if(auth()->user()->hasRole('admin'))
+                            <x-nav-link :href="route('admin.hospitals.create')" :active="request()->routeIs('admin.hospitals.create')">
+                                {{ __('Create hospitals') }}
+                            </x-nav-link>
+                        @endif
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        @if(auth()->user()->hasRole('admin'))
+                            <x-nav-link :href="route('admin.patients.index')" :active="request()->routeIs('admin.doctors.index')">
+                                {{ __('All patients') }}
+                            </x-nav-link>
+                        @elseif(auth()->user()->hasRole('user'))
+                            <x-nav-link :href="route('user.patients.index')" :active="request()->routeIs('user.doctors.index')">
+                                {{ __('All patients') }}
+                            </x-nav-link>
+                        @endif
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        @if(auth()->user()->hasRole('admin'))
+                            <x-nav-link :href="route('admin.patients.create')" :active="request()->routeIs('admin.patients.create')">
+                                {{ __('Create patients') }}
                             </x-nav-link>
                         @endif
                     </div>
