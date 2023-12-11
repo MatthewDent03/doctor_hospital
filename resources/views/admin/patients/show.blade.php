@@ -38,11 +38,11 @@
                             </tr>
                             <tr>
                                 <td class="font-bold ">Address </td>
-                                <td>{{ $patient->hospital->address }}</td>
+                                <td>{{ $patient->address }}</td>
                             </tr>
                             <tr>
                                 <td class="font-bold ">gender </td>
-                                <td>{{ $patient->hospital->gender }}</td>
+                                <td>{{ $patient->gender }}</td>
                             </tr>
                         </tbody>
                     </table>
