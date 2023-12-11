@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 use App\Http\Controllers\User\DoctorController as UserDoctorController;
 use App\Http\Controllers\Admin\HospitalController as AdminHospitalController;
 use App\Http\Controllers\User\HospitalController as UserHospitalController;
+use App\Http\Controllers\Admin\PatientController as AdminPatientController;
+use App\Http\Controllers\User\PatientController as UserPatientController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -69,7 +71,6 @@ Route::resource('/admin/hospitals', AdminHospitalController::class)->middleware(
 Route::resource('/user/hospitals', UserHospitalController::class)->middleware(['auth'])->names('user.hospitals')->only(['index', 'show']);
 Route::resource('/admin/patients', AdminPatientController::class)->middleware(['auth'])->names('admin.patients');
 Route::resource('/user/patients', UserPatientController::class)->middleware(['auth'])->names('user.patients')->only(['index', 'show']);
-
 
 
 Route::middleware('auth')->group(function () {

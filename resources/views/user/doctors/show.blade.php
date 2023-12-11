@@ -50,10 +50,12 @@
                         @foreach ($doctor->patients as $patient)
                             <tr>
                                 <td class="font-bold"> Patient </td>
-                                <td {{ $patient->name }}</td>
-                                <td {{ $patient->phone_number }}</td>
-                                <td {{ $patient->emergency_contact }}</td>
-                                <td {{ $patient->emergency_number }}</td>
+                                @foreach ($doctor->patients as $patient)
+                                    <a href="{{ route('admin.patients.show', $patient) }}" > <p>{{ $patient->name }}</p> </a>
+                                @endforeach
+                                <td> {{ $patient->phone_number }}</td>
+                                <td> {{ $patient->emergency_contact }}</td>
+                                <td> {{ $patient->emergency_number }}</td>
                             </tr>
                         @endforeach
                     </table>            
