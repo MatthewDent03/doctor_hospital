@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\Admin\DoctorController as AdminDoctorController;
 use App\Http\Controllers\User\DoctorController as UserDoctorController;
 use App\Http\Controllers\Admin\HospitalController as AdminHospitalController;
@@ -52,6 +53,12 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['auth', 'signed', 'throttle:6,1'])
     ->name('verification.verify');
+    
+Route::middleware('auth')->group(function () {
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -64,6 +71,7 @@ Route::get('/dashboard', function () {
 
 
 
+Route::resource('/doctors', DoctorController::class)->names('doctors');
 
 Route::resource('/admin/doctors', AdminDoctorController::class)->middleware(['auth'])->names('admin.doctors');
 Route::resource('/user/doctors', UserDoctorController::class)->middleware(['auth'])->names('user.doctors')->only(['index', 'show']);
@@ -73,11 +81,6 @@ Route::resource('/admin/patients', AdminPatientController::class)->middleware(['
 Route::resource('/user/patients', UserPatientController::class)->middleware(['auth'])->names('user.patients')->only(['index', 'show']);
 
 
-Route::middleware('auth')->group(function () {
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-});
 
 Auth::routes();
 

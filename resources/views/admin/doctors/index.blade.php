@@ -28,7 +28,7 @@
 
                 </div>
             @empty
-            <p>No doctors</p>
+            <p>No sdasdsadasdasd</p>
             @endforelse
             
 <!-- Activating the pagination premade feature with laravel in the index view through the controller -->

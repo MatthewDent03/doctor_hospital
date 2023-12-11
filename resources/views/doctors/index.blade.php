@@ -15,14 +15,14 @@
                     <a href="{{ route('doctors.show', $doctor) }}">{{ $doctor->first_name }}{{ $doctor->last_name }}</a>
                     </h2>
                     <p class="mt-2">
-                        {{ $doctor->email }}
+                        {{ $doctor->email }};
                         {{$doctor->phone_number}}
                         {{$doctor->facility}}
                     </p>
 
                 </div>
             @empty
-            <p>No doctors</p>
+            <p>No doctorsssss</p>
             @endforelse
             
 <!-- Activating the pagination premade feature with laravel in the index view through the controller -->

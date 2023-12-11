@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
 
         $admin = new User();
         $admin->name = 'Matt Dent';
-        $admin->email = 'N00220082@iadt.ie';
+        $admin->email = 'N00220082@gmail.ie';
         $admin->password = Hash::make('password');
         $admin->save();
 
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
 
         $user = new User();
         $user->name = 'Bianca Sloane';
-        $user->email = 'bianca@gmail.com';
+        $user->email = 'biancaa@gmail.com';
         $user->password = Hash::make('password');
         $user->save();
 
