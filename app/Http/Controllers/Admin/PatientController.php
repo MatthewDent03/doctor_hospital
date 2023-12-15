@@ -53,9 +53,7 @@ class PatientController extends Controller
             'age' => ['required', 'numeric'],
             'address' => 'required',
             'gender' => 'required',
-            'doctor_id' => ['required', 'exists:doctors,id']
-
-
+            // 'doctor_id' => ['required', 'exists:doctors,id']
         ]);
         
         // Use consistent field names (doctor_id)
@@ -67,14 +65,14 @@ class PatientController extends Controller
             'age' => $request->age,
             'address' => $request->address,
             'gender' => $request->gender,
-            'doctor_id' => $request->doctor_id,
+            // 'doctor_id' => $request->doctor_id,
             'created_at' => now(),
             'updated_at' => now()
         ]);
         // Use consistent field names (doctor_id)
-        $patient->doctors()->attach($request->doctor_id);
+        // $patient->doctors()->attach($request->doctor_id);
     
-        return redirect()->route('admin.patients.index');
+        return to_route('admin.patients.index');
     }
 
     /**
@@ -135,7 +133,7 @@ class PatientController extends Controller
             'age' => ['required', 'numeric'],
             'address' => 'required',
             'gender' => 'required',
-            'doctor_id' => ['required', 'exists:doctors,id']
+            // 'doctor_id' => ['required', 'exists:doctors,id']
 
 
         ]);
@@ -153,11 +151,11 @@ class PatientController extends Controller
             'age' => $request->age,
             'address' => $request->address,
             'gender' => $request->gender,
-            'doctor_id' => $request->doctor_id,
+            // 'doctor_id' => $request->doctor_id,
         ]);
-        $doctor = Doctor::find($request->doctor_id);
+        // $doctor = Doctor::find($request->doctor_id);
 
-        $patient->doctors()->sync([$doctor->id]);
+        // $patient->doctors()->sync([$doctor->id]);
 
         return redirect()->route('admin.patients.show', $patient->id)->with('success', 'Patient updated successfully');
     }

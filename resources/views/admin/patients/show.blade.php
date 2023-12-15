@@ -44,14 +44,13 @@
                                 <td class="font-bold ">gender </td>
                                 <td>{{ $patient->gender }}</td>
                             </tr>
-                            @foreach ($patient->doctors as $doctor)
-                            <tr>
-                                <td class="font-bold"> Doctor </td>
-                                <td> {{ $doctor->last_name }}</td>
-                                <td> {{ $doctor->email }}</td>
-                                <td> {{ $doctor->phone_number }}</td>
-                            </tr>
-                        @endforeach
+                            @forelse ($doctors as $doctor)
+                                <x-card>
+                                    <a href="{{ route('admin.doctors.show', $doctor) }}" class="font-bold text-2x1">{{ $doctor->last_name }}</a>
+                                </x-card>
+                            @empty
+                                <p>No doctors for this hospital</p>
+                            @endforelse
                         </tbody>
                     
                     </table>

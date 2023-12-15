@@ -44,6 +44,7 @@ class DoctorController extends Controller
             'phone_number' => ['required', 'numeric'],
             'facility' => 'required',
             'hospital_id' => 'required',
+            'patient_id' => ['required', 'exists:patients,id']
         ]);
     
         // Create a new Doctor instance
@@ -57,11 +58,9 @@ class DoctorController extends Controller
         ]);
     
         // Attach patients if any are selected
-        if ($request->has('patients')) {
-            $doctor->patients()->attach($request->patients);
-        }
+        $doctor->patients()->attach($request->patients);
     
-        return redirect()->route('admin.doctors.index');
+        return to_route('admin.doctors.index')->with('success','Doctor created Successfully');
     }
     
 
@@ -99,7 +98,7 @@ class DoctorController extends Controller
             'facility' => 'required',
             'phone_number' => ['required', 'numeric'],
             'hospital_id' => 'required',
-            'patients' => 'required|array',
+            'patients' => ['required','exists:patients,id']
         ]);
 
         // Update doctor's information
@@ -113,12 +112,12 @@ class DoctorController extends Controller
         ]);
 
         // Sync the patients
-        $doctor->patients()->sync($request->patients);
+        $doctor->patients()->attach($request->patients);
 
-        return redirect()->route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
+        return to_route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
     }
 
-    
+
 
     public function destroy(Doctor $doctor)
     {
