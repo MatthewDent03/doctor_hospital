@@ -37,9 +37,6 @@
                         :value="@old('phone_number')">>
                     </x-text-input>
 
-                    <div class="mt-6">
-                        <x-select-hospital name="hospital_id" :hospitals="$hospitals" :selected="old('hospital_id')"/>
-                    </div>
 <!-- Creating a button for the create function -->
                     <x-primary-button class="mt-6">Create Hospital</x-primary-button>
                 </form>

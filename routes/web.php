@@ -79,6 +79,8 @@ Route::resource('/admin/hospitals', AdminHospitalController::class)->middleware(
 Route::resource('/user/hospitals', UserHospitalController::class)->middleware(['auth'])->names('user.hospitals')->only(['index', 'show']);
 Route::resource('/admin/patients', AdminPatientController::class)->middleware(['auth'])->names('admin.patients');
 Route::resource('/user/patients', UserPatientController::class)->middleware(['auth'])->names('user.patients')->only(['index', 'show']);
+Route::put('/doctors/{doctor}', [DoctorController::class, 'update'])->name('admin.doctors.update');
+
 
 
 

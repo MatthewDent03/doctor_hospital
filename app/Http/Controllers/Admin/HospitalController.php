@@ -41,23 +41,25 @@ class HospitalController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
+        
         $request->validate([
             'name' => ['required', 'alpha'],
             'phone_number' => ['required', 'numeric'],
             'address' => 'required',
-            'hospital_id' => 'required',
         ]);
-
+    
         Hospital::create([
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
-            'hospital_id' => $request->hospital_id,
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        return to_route('admin.hospitals.index');
+    
+        // Use redirect() instead of to_route()
+        return redirect()->route('admin.hospitals.index');
     }
+    
 
     /**
      * Display the specified resource.

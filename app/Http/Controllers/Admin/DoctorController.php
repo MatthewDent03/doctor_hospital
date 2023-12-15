@@ -42,71 +42,91 @@ class DoctorController extends Controller
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'numeric'],
             'facility' => 'required',
-            'hospital_id' => 'required',
         ]);
-
-        Doctor::create([
+    
+        // Create a new Doctor instance
+        $doctor = Doctor::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
             'facility' => $request->facility,
             'hospital_id' => $request->hospital_id,
-            'created_at' => now(),
-            'updated_at' => now()
+            'patient_id' => $request->patient_id
         ]);
+    
+        // Attach patients
+        $doctor->patients()->attach($request->patients);
+    
         return to_route('admin.doctors.index');
     }
 
-    public function show($id)
+    public function show(Doctor $doctor)
     {
-        $user = Auth::user();
-        $user->authorizeRoles('admin');
-        $doctor = Doctor::find($id);
-        return view('admin.doctors.show')->with('doctor', $doctor);
+        $doctor = Doctor::with('hospital', 'patients')->find($doctor->id);
+    
+        return view('admin.doctors.show', compact('doctor'));
     }
+    
+    
 
     public function edit(Doctor $doctor)
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
+    
+        $patients = Patient::all(); // Add this line to fetch patients
+    
         $hospitals = Hospital::all();
-
-        return view('admin.doctors.edit', compact('doctor', 'hospitals'));
+    
+        return view('admin.doctors.edit', compact('doctor', 'patients', 'hospitals'));
     }
-
+    
     public function update(Request $request, Doctor $doctor)
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
+    
         $request->validate([
             'first_name' => ['required', 'alpha'],
             'last_name' => ['required', 'alpha'],
             'email' => ['required', 'email'],
             'facility' => 'required',
             'phone_number' => ['required', 'numeric'],
-            'patients' =>['required', 'exists:patients,id']
+            'hospital_id' => 'required',
+            'patient_id' => 'required',
         ]);
-
+    
+        // Update doctor's information
         $doctor->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
             'facility' => $request->facility,
-            'phone_number' => $request->phone_number
+            'phone_number' => $request->phone_number,
+            'hospital_id' => $request->hospital_id,
         ]);
+    
+        // Sync the patients
+        $doctor->patients()->sync($request->patients);
 
-        $doctor->patients()->attach($request->patients);
-
-        return to_route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
+    
+        return redirect()->route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
     }
+    
 
     public function destroy(Doctor $doctor)
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        $doctor->delete(); 
+    
+        // Detach patients
+        $doctor->patients()->detach();
+    
+        // Delete the doctor
+        $doctor->delete();
+    
         return redirect()->route('admin.doctors.index')->with('success', 'Doctor record was deleted successfully.');
-    } 
+    }
+    
 }

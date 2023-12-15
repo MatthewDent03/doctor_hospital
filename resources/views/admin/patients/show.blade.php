@@ -44,9 +44,7 @@
                                 <td class="font-bold ">gender </td>
                                 <td>{{ $patient->gender }}</td>
                             </tr>
-                        </tbody>
-                        
-                        @foreach ($patient->doctors as $doctor)
+                            @foreach ($patient->doctors as $doctor)
                             <tr>
                                 <td class="font-bold"> Doctor </td>
                                 <td> {{ $doctor->last_name }}</td>
@@ -54,6 +52,8 @@
                                 <td> {{ $doctor->phone_number }}</td>
                             </tr>
                         @endforeach
+                        </tbody>
+                    
                     </table>
                     <table>
                         <tr>

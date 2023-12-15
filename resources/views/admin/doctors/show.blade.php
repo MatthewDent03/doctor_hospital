@@ -41,20 +41,18 @@
                                 <td>{{ $doctor->hospital->name }}</td>
                             </tr>
                             <tr>
-                                <td class="font-bold ">Hospital Address </td>
-                                <td>{{ $doctor->hospital->address }}</td>
+                                <td class="font-bold">Patient Name</td>
+                                <td>
+                                    @forelse ($doctor->patients as $patient)
+                                        {{ $patient->name }}
+                                        <br>
+                                    @empty
+                                        No patients associated with this doctor.
+                                    @endforelse
+                                </td>
                             </tr>
                         </tbody>
 
-                        @foreach ($doctor->patients as $patient)
-                            <tr>
-                                <td class="font-bold"> Patient </td>
-                                <td> {{ $patient->name }}</td>
-                                <td> {{ $patient->phone_number }}</td>
-                                <td> {{ $patient->emergency_contact }}</td>
-                                <td> {{ $patient->emergency_number }}</td>
-                            </tr>
-                        @endforeach
                     </table>
                     <table>
                         <tr>

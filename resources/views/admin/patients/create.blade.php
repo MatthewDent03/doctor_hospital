@@ -71,18 +71,15 @@
                         :value="@old('gender')">>
                     </x-text-input>
 
-                    <div class="form-group">
-                        <label for="doctors"> <strong> Doctors</strong> <br> </label>
+                    <!-- <div class="form-group">
+                        <label for="doctor_id"><strong>Doctor</strong><br></label>
                         @foreach ($doctors as $doctor)
-                            <input type="checkbox", value="{{$doctor->id}}" name="doctors[]">
-                           {{$doctor->last_name}}
+                            <input type="checkbox" value="{{ $doctor->id }}" name="doctor_id[]">
+                            {{ $doctor->first_name }} {{ $doctor->last_name }}
                         @endforeach
-                    </div>
+                    </div> -->
+                    <x-select-doctor name="doctor_id" :doctors="$doctors" :selected="old('doctor_id')"/>
 
-
-                    <div class="mt-6">
-                        <x-select-patient name="patient_id" :hospitals="$patients" :selected="old('patient_id')"/>
-                    </div>
 <!-- Creating a button for the create function -->
                     <x-primary-button class="mt-6">Create Patient</x-primary-button>
                 </form>

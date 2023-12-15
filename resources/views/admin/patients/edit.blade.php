@@ -73,6 +73,7 @@
                     class="w-full"
                     :value="@old('gender', $patient->gender)">
                 </x-text-input>
+                <x-select-doctor name="doctor_id" :doctors="$doctors" :selected="$patient->doctor_id"/>
 
                 <x-primary-button class="mt-6">Save Edit</x-primary-button> <!-- Created a save button to route to store function -->
                 </form>

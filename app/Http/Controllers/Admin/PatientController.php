@@ -44,6 +44,7 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
+        
         $request->validate([
             'name' => ['required', 'alpha'],
             'emergency_contact' => 'required',
@@ -52,9 +53,13 @@ class PatientController extends Controller
             'age' => ['required', 'numeric'],
             'address' => 'required',
             'gender' => 'required',
-        ]);
+            'doctor_id' => ['required', 'exists:doctors,id']
 
-        Patient::create([
+
+        ]);
+        
+        // Use consistent field names (doctor_id)
+        $patient = Patient::create([
             'name' => $request->name,
             'emergency_contact' => $request->emergency_contact,
             'phone_number' => $request->phone_number,
@@ -62,35 +67,39 @@ class PatientController extends Controller
             'age' => $request->age,
             'address' => $request->address,
             'gender' => $request->gender,
+            'doctor_id' => $request->doctor_id,
             'created_at' => now(),
             'updated_at' => now()
         ]);
-        return to_route('admin.patients.index');
+        // Use consistent field names (doctor_id)
+        $patient->doctors()->attach($request->doctor_id);
+    
+        return redirect()->route('admin.patients.index');
     }
 
     /**
      * Display the specified resource.
      */
     public function show(Patient $patient)
-    {
-        $user = Auth::user();
-        $user->authorizeRoles('admin');
-    
-        if (!Auth::id()) {
-            return abort(403);
-        }
-    
-        // Remove the following line, as $id is not defined
-        // $patient = Patient::find($id);
-    
-        if (!$patient) {
-            return abort(404);
-        }
-    
-        $doctors = $patient->doctors;
-    
-        return view('admin.patients.show', compact('patient', 'doctors'));
+{
+    $user = Auth::user();
+    $user->authorizeRoles('admin');
+
+    if (!$user) {
+        return abort(403);
     }
+
+    $patient = Patient::with('doctors')->find($patient->id);
+
+    if (!$patient) {
+        return abort(404);
+    }
+
+    $doctors = $patient->doctors;
+
+    return view('admin.patients.show', compact('patient', 'doctors'));
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -126,6 +135,9 @@ class PatientController extends Controller
             'age' => ['required', 'numeric'],
             'address' => 'required',
             'gender' => 'required',
+            'doctor_id' => ['required', 'exists:doctors,id']
+
+
         ]);
 
         $patient = Patient::find($id);
@@ -133,7 +145,6 @@ class PatientController extends Controller
         if (!$patient) {
             return abort(404);
         }
-
         $patient->update([
             'name' => $request->name,
             'emergency_contact' => $request->emergency_contact,
@@ -142,7 +153,11 @@ class PatientController extends Controller
             'age' => $request->age,
             'address' => $request->address,
             'gender' => $request->gender,
+            'doctor_id' => $request->doctor_id,
         ]);
+        $doctor = Doctor::find($request->doctor_id);
+
+        $patient->doctors()->sync([$doctor->id]);
 
         return redirect()->route('admin.patients.show', $patient->id)->with('success', 'Patient updated successfully');
     }

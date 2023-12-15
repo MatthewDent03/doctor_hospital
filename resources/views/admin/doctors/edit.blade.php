@@ -8,7 +8,8 @@
     <div class="py-12">
         <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.doctors.update', $doctor) }}" method="post" enctype="multipart/formdata">
+            <form action="{{ route('admin.doctors.update', $doctor) }}" method="post" enctype="multipart/form-data">
+
                 @method('put')
                 @csrf
                 <x-text-input
@@ -56,6 +57,34 @@
                     class="w-full"
                     :value="@old('phone_number', $doctor->phone_number)">
                 </x-text-input>
+
+                <div class="form-group">
+                    <label for="hospitals"><strong>Hospitals</strong><br></label>
+                    <select name="hospital_id" class="form-control">
+                        @foreach ($hospitals as $hospital)
+                            <option value="{{ $hospital->id }}" {{ $hospital->id == $doctor->hospital_id ? 'selected' : '' }}>
+                                {{ $hospital->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="patients"><strong>Patients</strong><br></label>
+                    @foreach ($patients as $patient)
+                        <div class="form-check">
+                            <input
+                                type="checkbox"
+                                value="{{ $patient->id }}"
+                                name="patients[]" 
+                                {{ in_array($patient->id, $doctor->patients->pluck('id')->toArray()) ? 'checked' : '' }}
+                            >
+                            <label class="form-check-label">{{ $patient->name }}</label>
+                        </div>
+                    @endforeach
+                </div>
+
+
                 <x-primary-button class="mt-6">Save Edit</x-primary-button> <!-- Created a save button to route to store function -->
                 </form>
             </div>
