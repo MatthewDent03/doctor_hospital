@@ -36,7 +36,7 @@ class DoctorController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-    
+
         $request->validate([
             'first_name' => ['required', 'alpha'],
             'last_name' => ['required', 'alpha'],
@@ -44,9 +44,13 @@ class DoctorController extends Controller
             'phone_number' => ['required', 'numeric'],
             'facility' => 'required',
             'hospital_id' => 'required',
-            'patient_id' => ['required', 'exists:patients,id']
+            'patients' => ['required', 'array'],
+            'patients.*' => ['exists:patients,id'],
         ]);
-    
+
+        // Log the request data
+        logger($request->all());
+
         // Create a new Doctor instance
         $doctor = Doctor::create([
             'first_name' => $request->first_name,
@@ -56,12 +60,13 @@ class DoctorController extends Controller
             'facility' => $request->facility,
             'hospital_id' => $request->hospital_id,
         ]);
-    
+
         // Attach patients if any are selected
         $doctor->patients()->attach($request->patients);
-    
-        return to_route('admin.doctors.index')->with('success','Doctor created Successfully');
+
+        return redirect()->route('admin.doctors.index')->with('success', 'Doctor created Successfully');
     }
+
     
 
 
@@ -86,11 +91,12 @@ class DoctorController extends Controller
         return view('admin.doctors.edit', compact('doctor', 'patients', 'hospitals'));
     }
     
+    
     public function update(Request $request, Doctor $doctor)
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
+    
         $request->validate([
             'first_name' => ['required', 'alpha'],
             'last_name' => ['required', 'alpha'],
@@ -98,9 +104,9 @@ class DoctorController extends Controller
             'facility' => 'required',
             'phone_number' => ['required', 'numeric'],
             'hospital_id' => 'required',
-            'patients' => ['required','exists:patients,id']
+            'patients.*' => ['required', 'exists:patients,id'],
         ]);
-
+    
         // Update doctor's information
         $doctor->update([
             'first_name' => $request->first_name,
@@ -110,12 +116,16 @@ class DoctorController extends Controller
             'phone_number' => $request->phone_number,
             'hospital_id' => $request->hospital_id,
         ]);
-
+    
         // Sync the patients
-        $doctor->patients()->attach($request->patients);
+        $doctor->patients()->sync($request->patients);
+        logger('Updated Patient IDs:', $request->patients);
 
-        return to_route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
+        return redirect()->route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
     }
+    
+
+
 
 
 

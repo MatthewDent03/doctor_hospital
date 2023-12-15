@@ -58,30 +58,33 @@
                     :value="@old('phone_number', $doctor->phone_number)">
                 </x-text-input>
 
-                <!-- <div class="form-group">
-                    <label for="hospitals"><strong>Hospitals</strong><br></label>
-                    <select name="hospital_id" class="form-control">
-                        @foreach ($hospitals as $hospital)
-                            <option value="{{ $hospital->id }}" {{ $hospital->id == $doctor->hospital_id ? 'selected' : '' }}>
-                                {{ $hospital->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div> -->
-
-                <div class="mt-6">
-                    <label for="hospital_id"> <strong>Hospital</strong> <br> </label>
-                    <x-select-hospital name="hospital_id" :hospitals="$hospitals" :selected="old('hospital_id')"/>
-                </div>
- 
                 <div class="form-group">
-                    <br>
-                    <label for="patients"> <strong>Patients</strong> <br> </label>
-                    @foreach($patients as $patient)
-                        <input type="checkbox" value="{{$patient->id}}" name="patients[]">
-                        {{$patient->patient_name}}
-                    @endforeach
-                </div>
+        <label for="patients"><strong>Patients</strong><br></label>
+        @foreach ($patients as $patient)
+            <div class="form-check">
+                <input
+                    type="checkbox"
+                    value="{{ $patient->id }}"
+                    name="patients[]"
+                    {{ in_array($patient->id, $doctor->patients->pluck('id')->toArray()) ? 'checked' : '' }}
+                >
+                <label class="form-check-label">{{ $patient->name }}</label>
+            </div>
+        @endforeach
+    </div>
+
+    <div class="form-group">
+        <label for="hospital_id"><strong>Hospital</strong><br></label>
+        <select name="hospital_id" class="form-control">
+            @foreach ($hospitals as $hospital)
+                <option value="{{ $hospital->id }}" {{ $hospital->id == $doctor->hospital_id ? 'selected' : '' }}>
+                    {{ $hospital->name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+
 
                 <x-primary-button class="mt-6">Save Edit</x-primary-button> <!-- Created a save button to route to store function -->
                 </form>

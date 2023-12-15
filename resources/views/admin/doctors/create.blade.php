@@ -53,20 +53,12 @@
                         :value="@old('phone_number')">>
                     </x-text-input>
 
-
-                <div class="mt-6">
-                    <label for="hospital_id"> <strong>Hospital</strong> <br> </label>
-                    <x-select-hospital name="hospital_id" :hospitals="$hospitals" :selected="old('hospital_id')"/>
-                </div>
- 
-                <div class="form-group">
-                    <br>
-                    <label for="patients"> <strong>Patients</strong> <br> </label>
-                    @foreach($patients as $patient)
-                        <input type="checkbox" value="{{$patient->id}}" name="patients[]">
-                        {{$patient->patient_name}}
-                    @endforeach
-                </div> 
+                    <div class="mt-6">
+                        <x-select-patient name="patients[]" :patients="$patients" :selected="old('patients', [])"/>
+                    </div>
+                    <div class="mt-6">
+                        <x-select-hospital name="hospital_id" :hospitals="$hospitals" :selected="old('hospital_id')"/>
+                    </div>
 <!-- Creating a button for the create function -->
                     <x-primary-button class="mt-6">Create Doctor</x-primary-button>
                 </form>

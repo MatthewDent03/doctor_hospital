@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('age');
             $table->string('gender');
+            $table->string('patient_image');
             $table->timestamps();
         });
     }
