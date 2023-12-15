@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
+use App\Models\Doctor;
 
 class PatientController extends Controller
 {
@@ -28,11 +29,13 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
-        $patients = Patient::all();
-
-        return view('admin.patients.create')->with('patients', $patients);
+    
+        $doctors = Doctor::all();
+        $patients = Patient::all(); // Assuming you want to fetch patients here
+    
+        return view('admin.patients.create', compact('doctors', 'patients'));
     }
+    
 
     /**
      * Store a newly created resource in storage.

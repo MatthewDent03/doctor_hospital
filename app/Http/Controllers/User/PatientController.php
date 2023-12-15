@@ -18,7 +18,7 @@ class PatientController extends Controller
         $user->authorizeRoles('user');
         $patients = Patient::all();
 
-        return view('index.patients.index')->with('patients', $patients);
+        return view('user.patients.index')->with('patients', $patients);
     }
     /**
      * Display the specified resource.
