@@ -56,6 +56,15 @@
                     :value="@old('age', $patient->age)">
                 </x-text-input>
 
+                <x-file-input
+                    type="file"
+                    name="patient_image"
+                    placeholder="Patient"
+                    class="w-full mt-6"
+                    field="patient_image">
+                </x-file-input>
+
+
                 <x-text-input
                     type="text"
                     name="address"

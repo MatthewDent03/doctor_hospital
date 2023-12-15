@@ -17,8 +17,20 @@
                     <table class="table table-hover">
                         <tbody>
                             <tr>
+                                <td rowspan="6">
+                                    @if ($patient_image_name)
+                                        <img src="{{ asset($patient_image_name) }}" alt="{{ $patient->name }}" width="100">
+                                    @else
+                                        <!-- Hardcoded default image path -->
+                                        <img src="{{ asset('images/default-image.jpg') }}" alt="Default Image" width="100">
+                                    @endif
+                                </td>
+                            </tr>
+
+                            <tr>
                                 <td class="font-bold ">Name  </td>
                                 <td>{{ $patient->name }}</td>
+                            </td>
                             </tr>
                             <tr>
                                 <td class="font-bold ">Emergency Contact  </td>
@@ -36,6 +48,9 @@
                                 <td class="font-bold ">Age  </td>
                                 <td>{{ $patient->age }}</td>
                             </tr>
+                            
+                            </tr>
+
                             <tr>
                                 <td class="font-bold ">Address </td>
                                 <td>{{ $patient->address }}</td>

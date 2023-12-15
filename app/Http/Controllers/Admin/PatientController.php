@@ -51,10 +51,22 @@ class PatientController extends Controller
             'phone_number' => 'required',
             'emergency_number' => 'required',
             'age' => ['required', 'numeric'],
+            'patient_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+
             'address' => 'required',
             'gender' => 'required',
             // 'doctor_id' => ['required', 'exists:doctors,id']
         ]);
+
+        $patient_image_name = null;
+        if ($request->hasFile('patient_image')) {
+            $image = $request->file('patient_image');
+            $imageName = time() . '.' . $image->extension();
+            $image->storeAs('public/patients', $imageName);
+            $patient_image_name = 'storage/patients/' . $imageName;
+        }
+        
+
         
         // Use consistent field names (doctor_id)
         $patient = Patient::create([
@@ -63,6 +75,7 @@ class PatientController extends Controller
             'phone_number' => $request->phone_number,
             'emergency_number' => $request->emergency_number,
             'age' => $request->age,
+            'patient_image' => $patient_image_name,
             'address' => $request->address,
             'gender' => $request->gender,
             // 'doctor_id' => $request->doctor_id,
@@ -79,24 +92,25 @@ class PatientController extends Controller
      * Display the specified resource.
      */
     public function show(Patient $patient)
-{
-    $user = Auth::user();
-    $user->authorizeRoles('admin');
+    {
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+    
+        if (!$user) {
+            return abort(403);
+        }
+    
+        $patient = Patient::with('doctors')->find($patient->id);
+    
+        if (!$patient) {
+            return abort(404);
+        }
+    
+        $doctors = $patient->doctors;
+        $patient_image_name = $patient->patient_image; // Set the variable her     
 
-    if (!$user) {
-        return abort(403);
+        return view('admin.patients.show', compact('patient', 'doctors', 'patient_image_name'));
     }
-
-    $patient = Patient::with('doctors')->find($patient->id);
-
-    if (!$patient) {
-        return abort(404);
-    }
-
-    $doctors = $patient->doctors;
-
-    return view('admin.patients.show', compact('patient', 'doctors'));
-}
 
 
     /**
@@ -131,12 +145,21 @@ class PatientController extends Controller
             'phone_number' => 'required',
             'emergency_number' => 'required',
             'age' => ['required', 'numeric'],
+            'patient_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'address' => 'required',
             'gender' => 'required',
             // 'doctor_id' => ['required', 'exists:doctors,id']
 
 
         ]);
+        $patient_image_name = null;
+
+        if ($request->hasFile('patient_image')) {
+            $image = $request->file('patient_image');
+            $imageName = time() . '.' . $image->extension();
+            $image->storeAs('public/patients', $imageName);
+            $patient_image_name = 'storage/patients/' . $imageName;
+        }
 
         $patient = Patient::find($id);
 
@@ -149,6 +172,7 @@ class PatientController extends Controller
             'phone_number' => $request->phone_number,
             'emergency_number' => $request->emergency_number,
             'age' => $request->age,
+            'patient_image' => $patient_image_name,
             'address' => $request->address,
             'gender' => $request->gender,
             // 'doctor_id' => $request->doctor_id,

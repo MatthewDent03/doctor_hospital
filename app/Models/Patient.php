@@ -9,10 +9,13 @@ use App\Models\Doctor;
 class Patient extends Model
 {
     use HasFactory;
-    // protected $fillable = [
-    //     'name', 'emergency_contact', 'phone_number', 'emergency_number', 'address', 'age', 'gender'
+
+    // protected $guarded = [
     // ];
-    protected $guarded = [];
+
+    protected $fillable = [
+        'name', 'emergency_contact', 'phone_number', 'emergency_number', 'age', 'address', 'gender', 'patient_image',
+    ];
 
     public function doctors()
     {

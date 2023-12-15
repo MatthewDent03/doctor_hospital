@@ -33,7 +33,11 @@
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">Phone Number:</span> {{ $patient->phone_number }}
                         </p>
-            
+                        @if ($patient->patient_image)
+                            <img src="{{ asset($patient->patient_image) }}" alt="{{ $patient->name }}" width="100">
+                        @else
+                            No Image
+                        @endif
                 </x-card>   
             @empty
                 <p>No patients</p>

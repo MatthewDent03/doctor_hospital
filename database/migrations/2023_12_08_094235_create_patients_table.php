@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('emergency_contact');
-            $table->string('phone_number');
-            $table->string('emergency_number');
-            $table->string('address');
-            $table->string('age');
-            $table->string('gender');
-            $table->string('patient_image');
+            $table->string('name')->nullable();
+            $table->string('emergency_contact')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('emergency_number')->nullable();
+            $table->string('address')->nullable();
+            $table->string('age')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('patient_image')->nullable();
             $table->timestamps();
         });
     }

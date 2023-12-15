@@ -74,6 +74,14 @@
                         :value="@old('gender')">>
                     </x-text-input>
 
+                    <x-file-input
+                        type="file"
+                        name="patient_image"
+                        placeholder="Patient"
+                        class="w-full mt-6"
+                        field="patient_image">
+                    </x-file-input>
+
 <!-- Creating a button for the create function -->
                     <x-primary-button class="mt-6">Create Patient</x-primary-button>
                 </form>
