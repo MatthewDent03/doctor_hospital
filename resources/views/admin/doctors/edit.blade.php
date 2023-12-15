@@ -76,13 +76,14 @@
                             <input
                                 type="checkbox"
                                 value="{{ $patient->id }}"
-                                name="patients[]" 
+                                name="patients[]"
                                 {{ in_array($patient->id, $doctor->patients->pluck('id')->toArray()) ? 'checked' : '' }}
                             >
                             <label class="form-check-label">{{ $patient->name }}</label>
                         </div>
                     @endforeach
                 </div>
+
 
 
                 <x-primary-button class="mt-6">Save Edit</x-primary-button> <!-- Created a save button to route to store function -->

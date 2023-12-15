@@ -36,12 +36,14 @@ class DoctorController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
+    
         $request->validate([
             'first_name' => ['required', 'alpha'],
             'last_name' => ['required', 'alpha'],
             'email' => ['required', 'email'],
             'phone_number' => ['required', 'numeric'],
             'facility' => 'required',
+            'hospital_id' => 'required',
         ]);
     
         // Create a new Doctor instance
@@ -52,14 +54,17 @@ class DoctorController extends Controller
             'phone_number' => $request->phone_number,
             'facility' => $request->facility,
             'hospital_id' => $request->hospital_id,
-            'patient_id' => $request->patient_id
         ]);
     
-        // Attach patients
-        $doctor->patients()->attach($request->patients);
+        // Attach patients if any are selected
+        if ($request->has('patients')) {
+            $doctor->patients()->attach($request->patients);
+        }
     
-        return to_route('admin.doctors.index');
+        return redirect()->route('admin.doctors.index');
     }
+    
+
 
     public function show(Doctor $doctor)
     {
@@ -86,7 +91,7 @@ class DoctorController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-    
+
         $request->validate([
             'first_name' => ['required', 'alpha'],
             'last_name' => ['required', 'alpha'],
@@ -94,9 +99,9 @@ class DoctorController extends Controller
             'facility' => 'required',
             'phone_number' => ['required', 'numeric'],
             'hospital_id' => 'required',
-            'patient_id' => 'required',
+            'patients' => 'required|array',
         ]);
-    
+
         // Update doctor's information
         $doctor->update([
             'first_name' => $request->first_name,
@@ -106,13 +111,13 @@ class DoctorController extends Controller
             'phone_number' => $request->phone_number,
             'hospital_id' => $request->hospital_id,
         ]);
-    
+
         // Sync the patients
         $doctor->patients()->sync($request->patients);
 
-    
         return redirect()->route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
     }
+
     
 
     public function destroy(Doctor $doctor)
