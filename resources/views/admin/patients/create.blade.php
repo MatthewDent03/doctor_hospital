@@ -21,9 +21,9 @@
 
                     <x-text-input
                         type="text"
-                        name="emergency_name"
-                        field="emergency_name"
-                        placeholder="Emergency Name..."
+                        name="emergency_contact"
+                        field="emergency_contact"
+                        placeholder="Emergency Contact..."
                         class="w-full mt-6"
                         :value="@old('emergency_contact')"></x-text-input>
 

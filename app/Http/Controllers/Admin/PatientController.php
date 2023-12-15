@@ -43,13 +43,12 @@ class PatientController extends Controller
         $user->authorizeRoles('admin');
         $request->validate([
             'name' => ['required', 'alpha'],
-            'emergency_contact' => ['required', 'alpha'],
+            'emergency_contact' => 'required',
             'phone_number' => 'required',
             'emergency_number' => 'required',
             'age' => ['required', 'numeric'],
             'address' => 'required',
             'gender' => 'required',
-            'patient_id' => 'required',
         ]);
 
         Patient::create([
@@ -60,7 +59,6 @@ class PatientController extends Controller
             'age' => $request->age,
             'address' => $request->address,
             'gender' => $request->gender,
-            'patient_id' => $request->patient_id,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -119,7 +117,7 @@ class PatientController extends Controller
         $user->authorizeRoles('admin');
         $request->validate([
             'name' => ['required', 'alpha'],
-            'emergency_contact' => ['required', 'alpha'],
+            'emergency_contact' => 'required',
             'phone_number' => 'required',
             'emergency_number' => 'required',
             'age' => ['required', 'numeric'],
