@@ -14,25 +14,12 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $user = Auth::user();
+        $user->authorizeRoles('user');
+        $patients = Patient::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return view('index.patients.index')->with('patients', $patients);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      */
@@ -40,31 +27,20 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('user');
+    
+        if (!Auth::id()) {
+            return abort(403);
+        }
+    
+        // Remove the following line, as $id is not defined
+        // $patient = Patient::find($id);
+    
+        if (!$patient) {
+            return abort(404);
+        }
+    
         $doctors = $patient->doctors;
+    
         return view('user.patients.show', compact('patient', 'doctors'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
