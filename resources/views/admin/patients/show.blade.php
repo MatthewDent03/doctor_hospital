@@ -19,7 +19,7 @@
                             <tr>
                                 <td rowspan="6">
                                     @if ($patient_image_name)
-                                        <img src="{{ asset($patient_image_name) }}" alt="{{ $patient->name }}" width="100">
+                                        <img src="{{ asset($patient_image_name) }}" alt="{{ $patient->name }}" width="100">  <!-- displaying image and hardcoded default image -->
                                     @else
                                         <!-- Hardcoded default image path -->
                                         <img src="{{ asset('images/default-image.jpg') }}" alt="Default Image" width="100">
@@ -57,11 +57,11 @@
                             </tr>
                             <tr>
                                 <td class="font-bold ">gender </td>
-                                <td>{{ $patient->gender }}</td>
+                                <td>{{ $patient->gender }}</td>  <!-- displaying data and attributes -->
                             </tr>
                             @forelse ($doctors as $doctor)
                                 <x-card>
-                                    <a href="{{ route('admin.doctors.show', $doctor) }}" class="font-bold text-2x1">{{ $doctor->last_name }}</a>
+                                    <a href="{{ route('admin.doctors.show', $doctor) }}" class="font-bold text-2x1">{{ $doctor->last_name }}</a>  <!-- routing to the show function in the controller -->
                                 </x-card>
                             @empty
                                 <p>No doctors for this hospital</p>

@@ -14,7 +14,7 @@ class HospitalSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run()    //creating the hospital seeder to create 3 instances of hospitals that contain 4 doctors each
     {
         Hospital::factory()
             ->times(3)

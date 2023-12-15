@@ -1,5 +1,5 @@
 <?php
-
+//calling models, controllers and other files to work coherently
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
@@ -31,7 +31,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//routing logins and registers through authenticated sessions
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
@@ -70,7 +70,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
+//routing to the controllers for crud functionality on html pages
 Route::resource('/doctors', DoctorController::class)->names('doctors');
 
 Route::resource('/admin/doctors', AdminDoctorController::class)->middleware(['auth'])->names('admin.doctors');

@@ -15,14 +15,14 @@
             @forelse ($doctors as $doctor)
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
-                    <a href="{{ route('admin.doctors.show', $doctor) }}">{{ $doctor->first_name }}{{ $doctor->last_name }}</a>
+                    <a href="{{ route('admin.doctors.show', $doctor) }}">{{ $doctor->first_name }}{{ $doctor->last_name }}</a>    <!-- routing to the show function in controller -->
                     </h2>
                     <p class="mt-2">
 
                         <h3 class="font-bold text-1x1"> <strong> Hospital Name </strong>
                         {{$doctor->hospital->name}} </h3>
                         {{ $doctor->email }}
-                        {{$doctor->phone_number}}
+                        {{$doctor->phone_number}}    <!-- displaying attributes and data -->
                         {{$doctor->facility}}
                     </p>
 

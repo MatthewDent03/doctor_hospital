@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.doctors.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.doctors.store') }}" method="post" enctype="multipart/form-data">    <!-- creating a route to the store function -->
                     @csrf
                     <x-text-input
                         type="text"
@@ -17,11 +17,11 @@
                         placeholder="First Name..."
                         class="w-full"
                         autocomplete="off"
-                        :value="@old('first_name')"></x-text-input>
+                        :value="@old('first_name')"></x-text-input>   <!-- calling old data inputs -->
 
                     <x-text-input
                         type="text"
-                        name="last_name"
+                        name="last_name"    
                         field="last_name"
                         placeholder="Last Name..."
                         class="w-full mt-6"
@@ -34,7 +34,7 @@
                         placeholder="Facility..."
                         class="w-full mt-6"
                         :value="@old('facility')">
-                    </x-textarea>
+                    </x-textarea>   <!--creating text areas through components to create attributes and their formatting -->
 
                     <x-textarea
                         name="email"
@@ -54,7 +54,7 @@
                     </x-text-input>
 
                     <div class="mt-6">
-                        <x-select-patient name="patients[]" :patients="$patients" :selected="old('patients', [])"/>
+                        <x-select-patient name="patients[]" :patients="$patients" :selected="old('patients', [])"/>   <!-- creating selection options through component for foreign table attributes -->
                     </div>
                     <div class="mt-6">
                         <x-select-hospital name="hospital_id" :hospitals="$hospitals" :selected="old('hospital_id')"/>

@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+//calling models, classes and files to work coherently
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
 use App\Models\Doctor;
-
+//initialising controller class
 class PatientController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class PatientController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
         $patients = Patient::all();
-
+//authorising roles for user or admin
         return view('admin.patients.index')->with('patients', $patients);
     }
 
@@ -34,7 +34,7 @@ class PatientController extends Controller
         $patients = Patient::all(); // Assuming you want to fetch patients here
     
         return view('admin.patients.create', compact('doctors', 'patients'));
-    }
+    }//changing route for views for user
     
 
     /**
@@ -44,7 +44,7 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        
+        //validating the attributes
         $request->validate([
             'name' => ['required', 'alpha'],
             'emergency_contact' => 'required',
@@ -57,7 +57,7 @@ class PatientController extends Controller
             'gender' => 'required',
             // 'doctor_id' => ['required', 'exists:doctors,id']
         ]);
-
+//initiating image files and declaring paths and setting base image as null
         $patient_image_name = null;
         if ($request->hasFile('patient_image')) {
             $image = $request->file('patient_image');
@@ -99,7 +99,7 @@ class PatientController extends Controller
         if (!$user) {
             return abort(403);
         }
-    
+    //creating error messages if data is not found
         $patient = Patient::with('doctors')->find($patient->id);
     
         if (!$patient) {
@@ -128,7 +128,7 @@ class PatientController extends Controller
         }
 
         $patients = Patient::all();
-
+//calling class and data with it
         return view('admin.patients.edit', compact('patient', 'patients'));
     }
 

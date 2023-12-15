@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('doctor_id');
 
             $table->foreign('patient_id')->references('id')->on('patients')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('doctor_id')->references('id')->on('doctors')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onUpdate('cascade')->onDelete('restrict');    //creating the many to many relationship between the doctor and patient table with foreign keys placed within each table
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patient_doctor');
+        Schema::dropIfExists('patient_doctor');   //dropping the pivot table that was created through this relationship
     }
 };

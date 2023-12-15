@@ -15,12 +15,12 @@ class RoleSeeder extends Seeder
     {
         $role_admin = new Role();
         $role_admin->name = 'admin';
-        $role_admin->description = 'An Administrator user';
+        $role_admin->description = 'An Administrator user';   //creating the admin seeder which is hard coded roles
         $role_admin->save();
 
         $role_user = new Role();
         $role_user->name = 'user';
-        $role_user->description = 'An ordinary user';
+        $role_user->description = 'An ordinary user';   //creating the user seeder which is hard coded roles
         $role_user->save();
     }
 }

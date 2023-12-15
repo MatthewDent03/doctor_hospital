@@ -22,14 +22,14 @@ class UserSeeder extends Seeder
         $admin = new User();
         $admin->name = 'Matt Dent';
         $admin->email = 'N00220082@gmail.ie';
-        $admin->password = Hash::make('password');
+        $admin->password = Hash::make('password');   //creating an admin role
         $admin->save();
 
         $admin->roles()->attach($role_admin);
 
         $user = new User();
         $user->name = 'Bianca Sloane';
-        $user->email = 'biancaa@gmail.com';
+        $user->email = 'biancaa@gmail.com';   //creating a user role
         $user->password = Hash::make('password');
         $user->save();
 

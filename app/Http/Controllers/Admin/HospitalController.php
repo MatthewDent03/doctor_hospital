@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+//importing classes from other models and folders
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Hospital;
-
+//initialising class
 class HospitalController extends Controller
 {
     /**
@@ -17,7 +17,7 @@ class HospitalController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
         $hospitals = Hospital::all();
-
+//creating authorisation for roles
         return view('admin.hospitals.index')->with('hospitals', $hospitals);
     }
 
@@ -28,11 +28,11 @@ class HospitalController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
+//calling classes and their data 
         $hospitals = Hospital::all();
 
         return view('admin.hospitals.create')->with('hospitals', $hospitals);
-    }
+    } //changing route view through data
 
     /**
      * Store a newly created resource in storage.
@@ -46,7 +46,7 @@ class HospitalController extends Controller
             'name' => ['required', 'alpha'],
             'phone_number' => ['required', 'numeric'],
             'address' => 'required',
-        ]);
+        ]); //creating validation for the attributes
     
         Hospital::create([
             'name' => $request->name,
@@ -78,7 +78,7 @@ class HospitalController extends Controller
         if (!$hospital) {
             return abort(404);
         }
-
+//creating error messages if data is not found
         $doctors = $hospital->doctors;
 
         return view('admin.hospitals.show', compact('hospital', 'doctors'));
@@ -117,7 +117,7 @@ class HospitalController extends Controller
         ]);
 
         $hospital = Hospital::find($id);
-
+//searching for id of class data
         if (!$hospital) {
             return abort(404);
         }

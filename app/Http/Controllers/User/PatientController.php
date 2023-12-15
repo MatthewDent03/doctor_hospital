@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
+//calling models and classes
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
-
+//intialising controller 
 class PatientController extends Controller
 {
     /**
@@ -14,12 +14,12 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        $user = Auth::user();  //authorising user role for authentication
         $user->authorizeRoles('user');
         $patients = Patient::all();
 
         return view('user.patients.index')->with('patients', $patients);
-    }
+    } //rerouting user view
     /**
      * Display the specified resource.
      */
@@ -28,7 +28,7 @@ class PatientController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('user');
     
-        if (!Auth::id()) {
+        if (!Auth::id()) {   //error message for missing id created
             return abort(403);
         }
     
@@ -39,7 +39,7 @@ class PatientController extends Controller
             return abort(404);
         }
     
-        $doctors = $patient->doctors;
+        $doctors = $patient->doctors;   //foreign key linked for data to cross over tables
     
         return view('user.patients.show', compact('patient', 'doctors'));
     }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {   //creating the patients table and the attributes with it, they are set to nullable as the image file was preventing the tables to be processed and patients were returning blank initially
             $table->id();
             $table->string('name')->nullable();
             $table->string('emergency_contact')->nullable();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('patients');   //dropping the patients table
     }
 };

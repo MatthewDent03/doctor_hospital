@@ -6,7 +6,7 @@
     </x-slot>
 <!-- Created a route through a button to the update function in the controller as well as text inputs and areas for data with old values as temp data to be edited -->
     <div class="py-12">
-        <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">  <!-- Added a form action to change route to update function in controller once button is clicked -->
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                 <form action="{{ route('admin.hospitals.update', $hospital) }}" method="post" enctype="multipart/formdata">
                 @method('put')
@@ -19,7 +19,7 @@
                     class="w-full"
                     :value="@old('name', $hospital->name)">
                 </x-text-input>
-
+<!-- retrieving old data inputs incase of page failure to prevent excessive time spent on form -->
                 <x-text-input
                     type="text"
                     name="address"

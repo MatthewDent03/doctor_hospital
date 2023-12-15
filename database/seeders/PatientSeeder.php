@@ -20,6 +20,6 @@ class PatientSeeder extends Seeder
             $patients = Patient::inRandomOrder()->take(rand(1, 3))->pluck('id');
             $doctor->patients()->attach($patients);
         }
-        
+        //creating the patient seeder which will randomly assign 3 ids into the doctor tables
     }
 }

@@ -13,7 +13,7 @@
             </x-alert-success>
         
             <x-primary-button>
-                <a href="{{ route('admin.patients.create') }}">Add a patient</a>
+                <a href="{{ route('admin.patients.create') }}">Add a patient</a>  <!-- routing to create function in controller -->
             </x-primary-button>
 
             @forelse ($patients as $patient)
@@ -22,7 +22,7 @@
                         <a href="{{ route('admin.patients.show', $patient) }}" class="font-bold text-2xl">{{ $patient->name }}</a>
             
                         <p class="mt-2 text-gray-700">
-                            <span class="font-bold">ID:</span> {{ $patient->id }}
+                            <span class="font-bold">ID:</span> {{ $patient->id }}   <!-- displaying data and attributes -->
                         </p>
                         <p class="mt-2 text-gray-700">
                             <span class="font-bold">Emergency Contact:</span> {{ $patient->emergency_contact }}
@@ -34,7 +34,7 @@
                             <span class="font-bold">Phone Number:</span> {{ $patient->phone_number }}
                         </p>
                         @if ($patient->patient_image)
-                            <img src="{{ asset($patient->patient_image) }}" alt="{{ $patient->name }}" width="100">
+                            <img src="{{ asset($patient->patient_image) }}" alt="{{ $patient->name }}" width="100">   <!-- displaying image -->
                         @else
                             No Image
                         @endif

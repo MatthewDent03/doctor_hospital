@@ -15,7 +15,7 @@ class PatientFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition()
-    {
+    {   //created function for defining the fake data that is returned through the attributes of the table and their data types
         return [
             'name' => $this->faker->name,
             'emergency_contact' => $this->faker->name,

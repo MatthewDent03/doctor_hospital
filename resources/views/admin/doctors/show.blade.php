@@ -42,8 +42,8 @@
                             </tr>
                             <tr>
                                 <td class="font-bold">Patient Name</td>
-                                <td>
-                                    @forelse ($doctor->patients as $patient)
+                                <td>    
+                                    @forelse ($doctor->patients as $patient)    <!-- displaying data for attributes with titles -->
                                         {{ $patient->name }}
                                         <br>
                                     @empty
@@ -57,7 +57,7 @@
                     <table>
                         <tr>
                             <td><x-primary-button><a href="{{ route('admin.doctors.edit', $doctor) }}">Edit</a> </x-primary-button></td>
-                            <!-- created a button for route for the edit function in the controller and the destroy function -->
+                            <!-- created a button for route for the edit function in the controller and the destroy function -->    <!-- creating routes to edit function and destroy function through buttons -->
                             <td><form method="POST" action="{{ route('admin.doctors.destroy', $doctor->id) }}"> @csrf @method('DELETE') <x-tertiary-button onclick="return confirm('Are you sure you want to delete?')">DELETE</x-tertiary-button></form></td>
                         </tr>
                     </table>               

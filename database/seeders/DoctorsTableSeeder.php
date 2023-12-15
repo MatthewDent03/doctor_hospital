@@ -14,6 +14,6 @@ class DoctorsTableSeeder extends Seeder
      */
     public function run()
     {
-        Doctor::factory(50)->create();
+        Doctor::factory(50)->create();   //seeding the bass doctors table later to be changed to crud functionality created by admins
     }
 }

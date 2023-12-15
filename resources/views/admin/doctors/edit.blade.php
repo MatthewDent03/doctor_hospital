@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-            <form action="{{ route('admin.doctors.update', $doctor) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.doctors.update', $doctor) }}" method="post" enctype="multipart/form-data">   <!--routing to update function -->
 
                 @method('put')
                 @csrf
@@ -18,7 +18,7 @@
                     field="first_name"
                     placeholder="First Name..."
                     class="w-full"
-                    :value="@old('first_name', $doctor->first_name)">
+                    :value="@old('first_name', $doctor->first_name)">  <!-- calling old data inputs -->
                 </x-text-input>
 
 
@@ -66,7 +66,7 @@
                     type="checkbox"
                     value="{{ $patient->id }}"
                     name="patients[]"
-                    {{ in_array($patient->id, $doctor->patients->pluck('id')->toArray()) ? 'checked' : '' }}
+                    {{ in_array($patient->id, $doctor->patients->pluck('id')->toArray()) ? 'checked' : '' }}    <!--creating checkboxes and dropdowns for foreign table atttributes -->
                 >
                 <label class="form-check-label">{{ $patient->name }}</label>
             </div>

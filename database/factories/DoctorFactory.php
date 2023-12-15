@@ -15,7 +15,7 @@ class DoctorFactory extends Factory
      * The general state of data type is sentence because it is most fitting as special characters are required and are defined later through validation methods in the controller
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition(): array  //creating array for fake data for each attribute to be entered and returned 
     {
         return [
         'first_name' => fake()->sentence,

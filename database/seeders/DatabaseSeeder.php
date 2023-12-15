@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         // Doctor::factory()->count(50)->create();
         $this->call(RoleSeeder::class);
-        $this->call(UserSeeder::class);
+        $this->call(UserSeeder::class);     //initialising the seeders for the tables content to have bass data and attributes
         $this->call(HospitalSeeder::class);
         $this->call(PatientSeeder::class);
     }

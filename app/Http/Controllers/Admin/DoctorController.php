@@ -1,26 +1,26 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+ //importing all classes required to perform code tasks
 use App\Http\Controllers\Controller;
 use App\Models\Doctor; // Add this line to import the Doctor model
 use App\Models\Hospital;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+//extending the controller to allow other controls to interact together and giving this controller a name of DoctorController 
 class DoctorController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
+        $user = Auth::user();     //applying authentication to the roles whether they are admin or user denying or allowing access
         $user->authorizeRoles('admin');
         // $doctors = Doctor::paginate(10);
         $doctors = Doctor::with('hospital')->get();
 
         return view('admin.doctors.index')->with('doctors', $doctors);
-    }
-
+    } //rerouting to another html page once access is granted
+    //initialises CRUD functionality in controller declaring the requirements for these processes
     public function create ()
     {
         $user = Auth::user();
@@ -28,7 +28,7 @@ class DoctorController extends Controller
 
         $hospitals = Hospital::all();
         $patients = Patient::all();
-
+//calling class and all their data
         return view('admin.doctors.create')->with('hospitals', $hospitals)->with('patients', $patients);
     }
 
@@ -36,7 +36,7 @@ class DoctorController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
+//declaring validation for each attribute in the table and requiring it for form data to be processing before proceeded
         $request->validate([
             'first_name' => ['required', 'alpha'],
             'last_name' => ['required', 'alpha'],
@@ -45,7 +45,7 @@ class DoctorController extends Controller
             'facility' => 'required',
             'hospital_id' => 'required',
             'patients' => ['required', 'array'],
-            'patients.*' => ['exists:patients,id'],
+            'patients.*' => ['exists:patients,id'],   //foreign keys being validated for their existence between the tables
         ]);
 
         // Log the request data
@@ -60,7 +60,7 @@ class DoctorController extends Controller
             'facility' => $request->facility,
             'hospital_id' => $request->hospital_id,
         ]);
-
+//requesting the data for the attributes 
         // Attach patients if any are selected
         $doctor->patients()->attach($request->patients);
 
@@ -73,7 +73,7 @@ class DoctorController extends Controller
     public function show(Doctor $doctor)
     {
         $doctor = Doctor::with('hospital', 'patients')->find($doctor->id);
-    
+    //interlinking the classes and attributes following them through the primary key of doctor with foreign keys
         return view('admin.doctors.show', compact('doctor'));
     }
     
@@ -89,7 +89,7 @@ class DoctorController extends Controller
         $hospitals = Hospital::all();
     
         return view('admin.doctors.edit', compact('doctor', 'patients', 'hospitals'));
-    }
+    } //requiring all tables to work coherently to process this functionality
     
     
     public function update(Request $request, Doctor $doctor)
@@ -122,7 +122,7 @@ class DoctorController extends Controller
         logger('Updated Patient IDs:', $request->patients);
 
         return redirect()->route('admin.doctors.show', $doctor)->with('success', 'Doctor updated successfully');
-    }
+    } 
     
 
 

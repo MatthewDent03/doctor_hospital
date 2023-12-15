@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7x1 mx-auto sm:px-6 lg:px-8">
             <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
-                <form action="{{ route('admin.patients.update', $patient) }}" method="post" enctype="multipart/formdata">
+                <form action="{{ route('admin.patients.update', $patient) }}" method="post" enctype="multipart/formdata">  <!-- routing to update function in controller -->
                 @method('put')
                 @csrf
                 <x-text-input
@@ -17,7 +17,7 @@
                     field="name"
                     placeholder="Name..."
                     class="w-full"
-                    :value="@old('name', $patient->name)">
+                    :value="@old('name', $patient->name)">  <!-- calling old data inputs -->
                 </x-text-input>
 
                 <x-text-input

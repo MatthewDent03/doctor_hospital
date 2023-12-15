@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('doctors', function (Blueprint $table) {   //creating a schema for migration to create the doctors table and the attributes it holds and their type
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
@@ -30,13 +30,13 @@ return new class extends Migration
     public function down(): void
     {
        // $table->dropForeign('hospital_id');
-        Schema::dropIfExists('doctors');
+        Schema::dropIfExists('doctors');   //creating a drop function to remove the table if errors occur or if it previously exists
     }
 
     public function addHospitalIdColumn(): void
     {
         Schema::table('doctors', function (Blueprint $table) {
-            $table->unsignedBigInteger('hospital_id')->after('id');
+            $table->unsignedBigInteger('hospital_id')->after('id');  //adding the foreign key id for the hospital table into the doctor for the one to many relationship
         });
     }
 };

@@ -14,7 +14,7 @@ class HospitalFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition()  //creating public function for fake data to be returned for the attributes of the table
     {
         return [
             'name' => $this->faker->name,

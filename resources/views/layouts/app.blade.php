@@ -1,5 +1,5 @@
 <!DOCTYPE html> <!-- App layout creates a template that is displayed for the components through laravel configuration with resources such as css and app.js -->
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">   <!-- initialising the app layouts to be used throughout the visual database -->
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,5 +32,5 @@
                {{ $slot }}
             </div>
         </div>
-    </body>
+    </body>   
 </html>

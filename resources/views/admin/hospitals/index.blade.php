@@ -13,7 +13,7 @@
             </x-alert-success>
         
             <x-primary-button>
-                <a href="{{ route('admin.hospitals.create') }}">Add a Hospital</a>
+                <a href="{{ route('admin.hospitals.create') }}">Add a Hospital</a>   <!-- creating route to the create function in controller -->
             </x-primary-button>
 
             @forelse ($hospitals as $hospital)
@@ -31,7 +31,7 @@
                             <span class="font-bold">Address:</span> {{ $hospital->address }}
                         </p>
                         <p class="mt-2 text-gray-700">
-                            <span class="font-bold">Phone Number:</span> {{ $hospital->phone_number }}
+                            <span class="font-bold">Phone Number:</span> {{ $hospital->phone_number }}    <!-- displaying data for the attributes -->
                         </p>
             
                 </x-card>   
